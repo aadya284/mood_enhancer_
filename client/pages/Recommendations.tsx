@@ -130,7 +130,17 @@ export default function Recommendations() {
       }
     };
 
-    return baseRecommendations[mood as keyof typeof baseRecommendations] || baseRecommendations.happy;
+    const result = baseRecommendations[mood as keyof typeof baseRecommendations];
+    if (!result) {
+      return {
+        mood: 'happy',
+        categories: baseRecommendations.happy
+      };
+    }
+    return {
+      mood,
+      categories: result
+    };
   };
 
   const handleFeedback = (itemId: string, type: 'like' | 'dislike') => {
