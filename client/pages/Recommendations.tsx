@@ -299,7 +299,7 @@ export default function Recommendations() {
             </TabsTrigger>
           </TabsList>
 
-          {Object.entries(recommendations.categories).map(([category, items]) => (
+          {recommendations && Object.entries(recommendations.categories).map(([category, items]) => (
             <TabsContent key={category} value={category} className="space-y-4">
               <div className="grid gap-6 md:grid-cols-2">
                 {items.map(item => renderRecommendationCard(item, category))}
