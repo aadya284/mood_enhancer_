@@ -243,10 +243,12 @@ export default function Recommendations() {
               <span className="text-2xl font-bold text-white">MoodEnhancer</span>
             </Link>
             <div className="flex items-center space-x-4">
-              <Badge className="bg-white/10 text-white border-white/20">
-                <Heart className="w-4 h-4 mr-1" />
-                Mood: {recommendations.mood}
-              </Badge>
+              {recommendations && (
+                <Badge className="bg-white/10 text-white border-white/20">
+                  <Heart className="w-4 h-4 mr-1" />
+                  Mood: {recommendations.mood}
+                </Badge>
+              )}
               <Link to="/dashboard">
                 <Button variant="ghost" className="text-white hover:bg-white/10">
                   Dashboard
