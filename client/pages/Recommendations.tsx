@@ -66,12 +66,12 @@ export default function Recommendations() {
     }
 
     const answers = JSON.parse(assessmentData);
-    
+
     // Simulate API call to get recommendations
     await new Promise(resolve => setTimeout(resolve, 1500));
-    
-    // Generate mock recommendations based on mood
-    const mockRecommendations: RecommendationData = generateMockRecommendations(answers.mood);
+
+    // Generate mock recommendations based on mood (fallback to 'happy' if mood is undefined)
+    const mockRecommendations: RecommendationData = generateMockRecommendations(answers.mood || 'happy');
     
     setRecommendations(mockRecommendations);
     setIsLoading(false);
