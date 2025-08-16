@@ -277,38 +277,40 @@ export default function Recommendations() {
           </Button>
         </div>
 
-        <Tabs defaultValue="movies" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-5 bg-white/10 border-white/20">
-            <TabsTrigger value="movies" className="data-[state=active]:bg-white data-[state=active]:text-primary">
-              <Film className="w-4 h-4 mr-2" />
-              Movies
-            </TabsTrigger>
-            <TabsTrigger value="music" className="data-[state=active]:bg-white data-[state=active]:text-primary">
-              <Music className="w-4 h-4 mr-2" />
-              Music
-            </TabsTrigger>
-            <TabsTrigger value="podcasts" className="data-[state=active]:bg-white data-[state=active]:text-primary">
-              <Headphones className="w-4 h-4 mr-2" />
-              Podcasts
-            </TabsTrigger>
-            <TabsTrigger value="audiobooks" className="data-[state=active]:bg-white data-[state=active]:text-primary">
-              <BookOpen className="w-4 h-4 mr-2" />
-              Audiobooks
-            </TabsTrigger>
-            <TabsTrigger value="games" className="data-[state=active]:bg-white data-[state=active]:text-primary">
-              <Gamepad2 className="w-4 h-4 mr-2" />
-              Games
-            </TabsTrigger>
-          </TabsList>
+        {recommendations && recommendations.categories && (
+          <Tabs defaultValue="movies" className="space-y-6">
+            <TabsList className="grid w-full grid-cols-5 bg-white/10 border-white/20">
+              <TabsTrigger value="movies" className="data-[state=active]:bg-white data-[state=active]:text-primary">
+                <Film className="w-4 h-4 mr-2" />
+                Movies
+              </TabsTrigger>
+              <TabsTrigger value="music" className="data-[state=active]:bg-white data-[state=active]:text-primary">
+                <Music className="w-4 h-4 mr-2" />
+                Music
+              </TabsTrigger>
+              <TabsTrigger value="podcasts" className="data-[state=active]:bg-white data-[state=active]:text-primary">
+                <Headphones className="w-4 h-4 mr-2" />
+                Podcasts
+              </TabsTrigger>
+              <TabsTrigger value="audiobooks" className="data-[state=active]:bg-white data-[state=active]:text-primary">
+                <BookOpen className="w-4 h-4 mr-2" />
+                Audiobooks
+              </TabsTrigger>
+              <TabsTrigger value="games" className="data-[state=active]:bg-white data-[state=active]:text-primary">
+                <Gamepad2 className="w-4 h-4 mr-2" />
+                Games
+              </TabsTrigger>
+            </TabsList>
 
-          {recommendations && Object.entries(recommendations.categories).map(([category, items]) => (
-            <TabsContent key={category} value={category} className="space-y-4">
-              <div className="grid gap-6 md:grid-cols-2">
-                {items.map(item => renderRecommendationCard(item, category))}
-              </div>
-            </TabsContent>
-          ))}
-        </Tabs>
+            {Object.entries(recommendations.categories).map(([category, items]) => (
+              <TabsContent key={category} value={category} className="space-y-4">
+                <div className="grid gap-6 md:grid-cols-2">
+                  {items.map(item => renderRecommendationCard(item, category))}
+                </div>
+              </TabsContent>
+            ))}
+          </Tabs>
+        )}
 
         {/* Feedback Summary */}
         <Card className="mt-8 bg-white/10 border-white/20 backdrop-blur-sm">
