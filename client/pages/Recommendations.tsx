@@ -78,6 +78,11 @@ export default function Recommendations() {
   };
 
   const generateMockRecommendations = (mood: string): RecommendationData => {
+    // Ensure mood is defined and valid
+    if (!mood || typeof mood !== 'string') {
+      mood = 'happy';
+    }
+
     const baseRecommendations = {
       happy: {
         movies: [
