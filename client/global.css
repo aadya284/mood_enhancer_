@@ -18,11 +18,27 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 260 100% 60%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 280 50% 94%;
+    --secondary-foreground: 260 100% 30%;
+
+    /* Mood-specific colors */
+    --happy: 45 100% 60%;
+    --happy-foreground: 0 0% 0%;
+
+    --calm: 200 100% 60%;
+    --calm-foreground: 0 0% 100%;
+
+    --sad: 220 50% 50%;
+    --sad-foreground: 0 0% 100%;
+
+    --angry: 0 100% 60%;
+    --angry-foreground: 0 0% 100%;
+
+    --gradient-start: 260 100% 60%;
+    --gradient-end: 200 100% 60%;
 
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
@@ -66,11 +82,27 @@
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 260 100% 70%;
+    --primary-foreground: 0 0% 0%;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 280 30% 20%;
+    --secondary-foreground: 260 100% 90%;
+
+    /* Dark mode mood colors */
+    --happy: 45 100% 70%;
+    --happy-foreground: 0 0% 0%;
+
+    --calm: 200 100% 70%;
+    --calm-foreground: 0 0% 0%;
+
+    --sad: 220 50% 60%;
+    --sad-foreground: 0 0% 100%;
+
+    --angry: 0 100% 70%;
+    --angry-foreground: 0 0% 0%;
+
+    --gradient-start: 260 100% 70%;
+    --gradient-end: 200 100% 70%;
 
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
