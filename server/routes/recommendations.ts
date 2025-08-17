@@ -306,13 +306,23 @@ Make sure all recommendations are real, popular content that exists. Focus on co
         ],
         games: [
           {
-            id: "fallback_5",
-            title: "Stardew Valley",
-            description: "Peaceful farming simulation",
-            genre: "Simulation",
+            id: "fallback_9",
+            title: "Hades",
+            description: "Action-packed roguelike with great story",
+            genre: "Action",
             rating: 4.9,
-            reason: "Relaxing and rewarding",
-            imageUrl: await getUnsplashImage("peaceful game"),
+            reason: "Engaging gameplay and positive progression",
+            imageUrl: await getUnsplashImage("Hades game cover art"),
+            externalUrl: "#"
+          },
+          {
+            id: "fallback_10",
+            title: "The Legend of Zelda: Breath of the Wild",
+            description: "Open-world adventure masterpiece",
+            genre: "Adventure",
+            rating: 4.8,
+            reason: "Immersive exploration and discovery",
+            imageUrl: await getUnsplashImage("Zelda Breath Wild game poster"),
             externalUrl: "#"
           }
         ]
