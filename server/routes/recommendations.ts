@@ -234,14 +234,25 @@ Make sure all recommendations are real, popular content that exists. Focus on co
         movies: fallbackMovies,
         music: [
           {
-            id: "fallback_2", 
-            title: "Feel Good Playlist",
-            description: "Upbeat songs to boost your energy",
+            id: "fallback_3",
+            title: "Blinding Lights - The Weeknd",
+            description: "Upbeat synth-pop anthem",
             genre: "Pop",
-            duration: "2h 30m",
+            duration: "3h 22m",
             rating: 4.9,
-            reason: "Perfect for your current mood",
-            imageUrl: await getUnsplashImage("music headphones"),
+            reason: "Energetic and mood-lifting",
+            imageUrl: await getUnsplashImage("The Weeknd Blinding Lights album cover"),
+            externalUrl: "#"
+          },
+          {
+            id: "fallback_4",
+            title: "Levitating - Dua Lipa",
+            description: "Disco-pop dance track",
+            genre: "Pop",
+            duration: "3h 23m",
+            rating: 4.8,
+            reason: "Infectious energy and positivity",
+            imageUrl: await getUnsplashImage("Dua Lipa Future Nostalgia album cover"),
             externalUrl: "#"
           }
         ],
