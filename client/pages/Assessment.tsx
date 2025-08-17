@@ -192,7 +192,7 @@ export default function Assessment() {
         }}
       />
       {/* Navigation */}
-      <nav className="border-b border-white/10 backdrop-blur-md bg-white/5">
+      <nav className="relative z-10 border-b border-white/10 backdrop-blur-md bg-white/5">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <Link to="/" className="flex items-center space-x-2">
