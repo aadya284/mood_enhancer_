@@ -613,7 +613,7 @@ export default function Recommendations() {
         )}
 
         {/* Feedback Summary */}
-        <Card className="mt-8 bg-white/10 border-white/20 backdrop-blur-sm">
+        <Card className="mt-8 dark-card">
           <CardHeader>
             <CardTitle className="text-white flex items-center gap-2">
               <Sparkles className="w-5 h-5 text-primary" />
