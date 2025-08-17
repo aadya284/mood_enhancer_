@@ -135,10 +135,10 @@ Please provide recommendations in this exact JSON format:
     {
       "title": "Game Title",
       "description": "Brief description",
-      "genre": "Genre", 
+      "genre": "Genre",
       "rating": 4.9,
       "reason": "Why this matches their mood",
-      "searchQuery": "video game screenshot"
+      "searchQuery": "Game Title video game poster cover art"
     }
   ]
 }
