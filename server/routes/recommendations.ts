@@ -269,7 +269,7 @@ Make sure all recommendations are real, popular content that exists. Focus on co
         duration: "1h 57m",
         rating: 4.8,
         reason: "Visually stunning and uplifting",
-        imageUrl: await getUnsplashImage("Spider-Man Into Spider-Verse movie poster"),
+        imageUrl: await getUnsplashImage("spider-man into spider-verse animated"),
         externalUrl: "#"
       },
       {
@@ -280,7 +280,7 @@ Make sure all recommendations are real, popular content that exists. Focus on co
         duration: "2h 35m",
         rating: 4.7,
         reason: "Immersive and visually breathtaking",
-        imageUrl: await getUnsplashImage("Dune 2021 movie poster"),
+        imageUrl: await getUnsplashImage("dune desert sci-fi"),
         externalUrl: "#"
       }
     ];
