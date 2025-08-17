@@ -426,10 +426,8 @@ export default function Recommendations() {
   }
 
   const renderRecommendationCard = (item: Recommendation, category: string) => (
-    <Card
-      key={item.id}
-      className="dark-card hover:bg-white/10 transition-all duration-300 overflow-hidden"
-    >
+    <div key={item.id}>
+      <Card className="dark-card hover:bg-white/10 transition-all duration-300 overflow-hidden">
       {/* Recommendation Image */}
       <div className="relative h-48 w-full overflow-hidden">
         <img
@@ -507,6 +505,8 @@ export default function Recommendations() {
         </div>
       </CardContent>
     </Card>
+    <span className="text-white text-sm">{item.rating}</span>
+    </div>
   );
 
   return (
