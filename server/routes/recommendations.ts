@@ -369,7 +369,7 @@ Make sure all recommendations are real, popular content that exists. Focus on co
             genre: "Action",
             rating: 4.9,
             reason: "Engaging gameplay and positive progression",
-            imageUrl: await getUnsplashImage("Hades game cover art"),
+            imageUrl: await getUnsplashImage("hades mythology gaming"),
             externalUrl: "#"
           },
           {
@@ -379,7 +379,7 @@ Make sure all recommendations are real, popular content that exists. Focus on co
             genre: "Adventure",
             rating: 4.8,
             reason: "Immersive exploration and discovery",
-            imageUrl: await getUnsplashImage("Zelda Breath Wild game poster"),
+            imageUrl: await getUnsplashImage("zelda adventure fantasy"),
             externalUrl: "#"
           }
         ]
