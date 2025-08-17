@@ -298,7 +298,7 @@ Make sure all recommendations are real, popular content that exists. Focus on co
             duration: "3h 22m",
             rating: 4.9,
             reason: "Energetic and mood-lifting",
-            imageUrl: await getUnsplashImage("The Weeknd Blinding Lights album cover"),
+            imageUrl: await getUnsplashImage("weeknd blinding lights neon"),
             externalUrl: "#"
           },
           {
@@ -309,7 +309,7 @@ Make sure all recommendations are real, popular content that exists. Focus on co
             duration: "3h 23m",
             rating: 4.8,
             reason: "Infectious energy and positivity",
-            imageUrl: await getUnsplashImage("Dua Lipa Future Nostalgia album cover"),
+            imageUrl: await getUnsplashImage("dua lipa disco colorful"),
             externalUrl: "#"
           }
         ],
