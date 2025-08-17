@@ -65,8 +65,11 @@ async function getUnsplashImage(query: string): Promise<string> {
 
 // Function to get AI recommendations
 async function getAIRecommendations(assessment: MoodAssessment): Promise<RecommendationResponse> {
+  // Add randomness to get different recommendations each time
+  const randomSeed = Math.floor(Math.random() * 1000);
+
   const prompt = `
-Based on this person's mood assessment, provide 2 personalized recommendations for each category (movies, music, podcasts, audiobooks, games).
+Based on this person's mood assessment, provide 2 DIVERSE and DIFFERENT personalized recommendations for each category. Use variety and avoid repeating the same popular titles.
 
 Mood Assessment:
 - Current mood: ${assessment.mood}
@@ -75,6 +78,12 @@ Mood Assessment:
 - Personal story: ${assessment.story}
 - Content preferences: ${assessment.preferences}
 - Desired activity: ${assessment.activity}
+- Random seed: ${randomSeed}
+
+IMPORTANT:
+- Provide DIFFERENT recommendations each time, not the same popular ones
+- Include both mainstream AND lesser-known quality content
+- For images, provide SPECIFIC search terms that will find actual movie posters, album covers, etc.
 
 Please provide recommendations in this exact JSON format:
 {
