@@ -240,7 +240,7 @@ export default function Index() {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-white/10 bg-white/5 backdrop-blur-sm py-8">
+      <footer className="border-t border-white/10 bg-black/30 backdrop-blur-sm py-8">
         <div className="container mx-auto px-4 text-center text-white/60">
           <div className="flex items-center justify-center space-x-2 mb-4">
             <Brain className="h-6 w-6 text-primary" />
