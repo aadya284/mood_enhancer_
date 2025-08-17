@@ -49,11 +49,12 @@ export default function Index() {
       <section className="relative py-20 text-center text-white overflow-hidden">
         {/* Background Image */}
         <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20"
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-10"
           style={{
             backgroundImage: 'url(https://images.pexels.com/photos/3862601/pexels-photo-3862601.jpeg)'
           }}
         />
+        <div className="absolute inset-0 bg-gradient-to-br from-black/30 via-transparent to-black/50" />
         <div className="relative z-10 container mx-auto px-4">
           <Badge className="mb-6 bg-white/10 text-white border-white/20 hover:bg-white/20">
             <Sparkles className="w-4 h-4 mr-2" />
