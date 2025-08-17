@@ -41,25 +41,44 @@ interface RecommendationResponse {
 // Function to get images from Unsplash
 async function getUnsplashImage(query: string): Promise<string> {
   try {
+    if (!process.env.UNSPLASH_ACCESS_KEY) {
+      // Use high-quality placeholder images from Pexels
+      const categoryImages: Record<string, string> = {
+        'movie': 'https://images.pexels.com/photos/7991579/pexels-photo-7991579.jpeg?w=400&h=600&fit=crop',
+        'music': 'https://images.pexels.com/photos/3764004/pexels-photo-3764004.jpeg?w=400&h=600&fit=crop',
+        'podcast': 'https://images.pexels.com/photos/6956912/pexels-photo-6956912.jpeg?w=400&h=600&fit=crop',
+        'book': 'https://images.pexels.com/photos/1029141/pexels-photo-1029141.jpeg?w=400&h=600&fit=crop',
+        'game': 'https://images.pexels.com/photos/275033/pexels-photo-275033.jpeg?w=400&h=600&fit=crop'
+      };
+
+      for (const [key, url] of Object.entries(categoryImages)) {
+        if (query.toLowerCase().includes(key)) {
+          return url;
+        }
+      }
+      return categoryImages.movie; // Default fallback
+    }
+
     const response = await fetch(
-      `https://api.unsplash.com/search/photos?query=${encodeURIComponent(query)}&per_page=1&client_id=${process.env.UNSPLASH_ACCESS_KEY}`
+      `https://api.unsplash.com/search/photos?query=${encodeURIComponent(query)}&per_page=1&orientation=portrait&client_id=${process.env.UNSPLASH_ACCESS_KEY}`
     );
-    
+
     if (!response.ok) {
       throw new Error('Failed to fetch from Unsplash');
     }
-    
+
     const data = await response.json();
-    
+
     if (data.results && data.results.length > 0) {
       return data.results[0].urls.regular;
     }
-    
-    // Fallback to placeholder if no image found
-    return `/placeholder.svg`;
+
+    // Fallback to high-quality Pexels images
+    return 'https://images.pexels.com/photos/7991579/pexels-photo-7991579.jpeg?w=400&h=600&fit=crop';
   } catch (error) {
     console.error('Error fetching Unsplash image:', error);
-    return `/placeholder.svg`;
+    // Return high-quality fallback instead of placeholder.svg
+    return 'https://images.pexels.com/photos/7991579/pexels-photo-7991579.jpeg?w=400&h=600&fit=crop';
   }
 }
 
