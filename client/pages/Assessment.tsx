@@ -157,7 +157,7 @@ export default function Assessment() {
             className="space-y-3"
           >
             {currentQuestion.options?.map((option, index) => (
-              <div key={index} className="flex items-center space-x-3 p-3 rounded-lg bg-white/5 hover:bg-white/10 transition-colors">
+              <div key={index} className="flex items-center space-x-3 p-3 rounded-lg bg-white/5 hover:bg-white/10 transition-colors border border-white/10">
                 <RadioGroupItem value={option} id={`option-${index}`} className="border-white/30" />
                 <Label htmlFor={`option-${index}`} className="text-white cursor-pointer flex-1">
                   {option}
