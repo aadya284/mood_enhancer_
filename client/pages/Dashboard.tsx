@@ -288,7 +288,7 @@ export default function Dashboard() {
         )}
 
         {/* Content Categories Usage */}
-        <Card className="bg-white/10 border-white/20 backdrop-blur-sm mb-8">
+        <Card className="dark-card mb-8">
           <CardHeader>
             <CardTitle className="text-white flex items-center gap-2">
               <Award className="w-5 h-5 text-primary" />
