@@ -206,7 +206,7 @@ export default function Assessment() {
         </div>
       </nav>
 
-      <div className="container mx-auto px-4 py-8">
+      <div className="relative z-10 container mx-auto px-4 py-8">
         <div className="max-w-3xl mx-auto">
           {/* Progress Bar */}
           <div className="mb-8">
