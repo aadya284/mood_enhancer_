@@ -173,7 +173,7 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gradient-start via-primary/20 to-gradient-end">
+    <div className="min-h-screen bg-gradient-to-br from-gradient-start via-background to-gradient-end dark">
       {/* Navigation */}
       <nav className="border-b border-white/10 backdrop-blur-md bg-white/5">
         <div className="container mx-auto px-4 py-4">
