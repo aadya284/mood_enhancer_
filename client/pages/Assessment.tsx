@@ -183,7 +183,14 @@ export default function Assessment() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gradient-start via-primary/20 to-gradient-end">
+    <div className="min-h-screen bg-gradient-to-br from-gradient-start via-primary/20 to-gradient-end relative">
+      {/* Background Image */}
+      <div
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-10"
+        style={{
+          backgroundImage: 'url(https://images.pexels.com/photos/4098218/pexels-photo-4098218.jpeg)'
+        }}
+      />
       {/* Navigation */}
       <nav className="border-b border-white/10 backdrop-blur-md bg-white/5">
         <div className="container mx-auto px-4 py-4">
