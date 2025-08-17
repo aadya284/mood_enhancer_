@@ -100,14 +100,49 @@ export default function Index() {
           
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
             {[
-              { icon: Film, label: "Movies", color: "text-red-400", description: "Curated films for every mood" },
-              { icon: Music, label: "Music", color: "text-green-400", description: "Perfect playlists and songs" },
-              { icon: Headphones, label: "Podcasts", color: "text-purple-400", description: "Inspiring conversations" },
-              { icon: BookOpen, label: "Audiobooks", color: "text-blue-400", description: "Stories that heal" },
-              { icon: Gamepad2, label: "Games", color: "text-yellow-400", description: "Interactive entertainment" },
+              {
+                icon: Film,
+                label: "Movies",
+                color: "text-red-400",
+                description: "Curated films for every mood",
+                bgImage: "https://images.pexels.com/photos/7991579/pexels-photo-7991579.jpeg"
+              },
+              {
+                icon: Music,
+                label: "Music",
+                color: "text-green-400",
+                description: "Perfect playlists and songs",
+                bgImage: "https://images.pexels.com/photos/3764004/pexels-photo-3764004.jpeg"
+              },
+              {
+                icon: Headphones,
+                label: "Podcasts",
+                color: "text-purple-400",
+                description: "Inspiring conversations",
+                bgImage: "https://images.pexels.com/photos/6724383/pexels-photo-6724383.jpeg"
+              },
+              {
+                icon: BookOpen,
+                label: "Audiobooks",
+                color: "text-blue-400",
+                description: "Stories that heal",
+                bgImage: "https://images.pexels.com/photos/3862601/pexels-photo-3862601.jpeg"
+              },
+              {
+                icon: Gamepad2,
+                label: "Games",
+                color: "text-yellow-400",
+                description: "Interactive entertainment",
+                bgImage: "https://images.pexels.com/photos/11790883/pexels-photo-11790883.jpeg"
+              },
             ].map((item, index) => (
-              <Card key={index} className="bg-white/10 border-white/20 hover:bg-white/20 transition-all duration-300 text-center backdrop-blur-sm">
-                <CardContent className="p-6">
+              <Card key={index} className="relative bg-white/10 border-white/20 hover:bg-white/20 transition-all duration-300 text-center backdrop-blur-sm overflow-hidden group">
+                {/* Background Image */}
+                <div
+                  className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110 opacity-30"
+                  style={{ backgroundImage: `url(${item.bgImage})` }}
+                />
+                <CardContent className="relative z-10 p-6">
                   <item.icon className={`w-12 h-12 mx-auto mb-4 ${item.color}`} />
                   <h3 className="text-lg font-semibold text-white mb-2">{item.label}</h3>
                   <p className="text-white/70 text-sm">{item.description}</p>
