@@ -556,7 +556,7 @@ export default function Recommendations() {
 
         {recommendations && recommendations.categories && (
           <Tabs defaultValue="movies" className="space-y-6">
-            <TabsList className="grid w-full grid-cols-5 bg-white/10 border-white/20">
+            <TabsList className="grid w-full grid-cols-5 bg-black/20 border-white/20">
               <TabsTrigger
                 value="movies"
                 className="data-[state=active]:bg-white data-[state=active]:text-primary"
