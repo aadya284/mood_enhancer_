@@ -134,8 +134,8 @@ export default function Assessment() {
                   key={mood}
                   className={`cursor-pointer transition-all duration-200 border-2 hover:scale-105 ${
                     answers[currentQuestion.id] === mood
-                      ? 'border-primary bg-primary/10'
-                      : 'border-white/20 bg-white/5 hover:bg-white/10'
+                      ? 'border-primary bg-primary/20 dark-card'
+                      : 'dark-card hover:bg-white/5'
                   }`}
                   onClick={() => handleAnswer(mood)}
                 >
