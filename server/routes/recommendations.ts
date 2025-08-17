@@ -258,14 +258,25 @@ Make sure all recommendations are real, popular content that exists. Focus on co
         ],
         podcasts: [
           {
-            id: "fallback_3",
-            title: "The Happiness Lab",
-            description: "Science-backed ways to feel happier",
-            genre: "Self-Help",
-            duration: "45m",
+            id: "fallback_5",
+            title: "The Joe Rogan Experience",
+            description: "Long-form conversations with interesting people",
+            genre: "Interview",
+            duration: "2h 45m",
             rating: 4.8,
-            reason: "Enhance your positive mindset",
-            imageUrl: await getUnsplashImage("podcast microphone"),
+            reason: "Engaging discussions to shift your focus",
+            imageUrl: await getUnsplashImage("Joe Rogan Experience podcast logo"),
+            externalUrl: "#"
+          },
+          {
+            id: "fallback_6",
+            title: "Conan O'Brien Needs a Friend",
+            description: "Comedy podcast with celebrity guests",
+            genre: "Comedy",
+            duration: "1h 15m",
+            rating: 4.7,
+            reason: "Lighthearted humor to boost mood",
+            imageUrl: await getUnsplashImage("Conan O'Brien podcast cover"),
             externalUrl: "#"
           }
         ],
