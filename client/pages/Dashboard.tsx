@@ -320,7 +320,7 @@ export default function Dashboard() {
         </Card>
 
         {/* Recent Mood History */}
-        <Card className="bg-white/10 border-white/20 backdrop-blur-sm">
+        <Card className="dark-card">
           <CardHeader>
             <CardTitle className="text-white flex items-center gap-2">
               <Clock className="w-5 h-5 text-primary" />
@@ -385,7 +385,7 @@ export default function Dashboard() {
 
         {/* Insights & Goals */}
         <div className="grid md:grid-cols-2 gap-6 mt-8">
-          <Card className="bg-white/10 border-white/20 backdrop-blur-sm">
+          <Card className="dark-card">
             <CardHeader>
               <CardTitle className="text-white flex items-center gap-2">
                 <Target className="w-5 h-5 text-primary" />
@@ -410,7 +410,7 @@ export default function Dashboard() {
             </CardContent>
           </Card>
 
-          <Card className="bg-white/10 border-white/20 backdrop-blur-sm">
+          <Card className="dark-card">
             <CardHeader>
               <CardTitle className="text-white flex items-center gap-2">
                 <TrendingUp className="w-5 h-5 text-primary" />
