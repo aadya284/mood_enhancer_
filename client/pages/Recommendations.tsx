@@ -421,8 +421,24 @@ export default function Recommendations() {
   const renderRecommendationCard = (item: Recommendation, category: string) => (
     <Card
       key={item.id}
-      className="bg-white/10 border-white/20 backdrop-blur-sm hover:bg-white/15 transition-all duration-300"
+      className="bg-white/10 border-white/20 backdrop-blur-sm hover:bg-white/15 transition-all duration-300 overflow-hidden"
     >
+      {/* Recommendation Image */}
+      <div className="relative h-48 w-full overflow-hidden">
+        <img
+          src={item.imageUrl}
+          alt={item.title}
+          className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+          onError={(e) => {
+            e.currentTarget.src = '/placeholder.svg';
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+        <Badge className="absolute top-3 right-3 bg-primary/90 text-white border-none">
+          <Star className="w-3 h-3 mr-1" />
+          {item.rating}
+        </Badge>
+      </div>
       <CardHeader>
         <div className="flex justify-between items-start">
           <div className="flex-1">
