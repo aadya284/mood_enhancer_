@@ -137,7 +137,7 @@ export default function Index() {
                 bgImage: "https://images.pexels.com/photos/11790883/pexels-photo-11790883.jpeg"
               },
             ].map((item, index) => (
-              <Card key={index} className="relative bg-white/10 border-white/20 hover:bg-white/20 transition-all duration-300 text-center backdrop-blur-sm overflow-hidden group">
+              <Card key={index} className="relative dark-card hover:bg-white/10 transition-all duration-300 text-center overflow-hidden group">
                 {/* Background Image */}
                 <div
                   className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110 opacity-30"
