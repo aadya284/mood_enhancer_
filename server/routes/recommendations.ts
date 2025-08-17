@@ -1,6 +1,9 @@
 import { RequestHandler } from "express";
 import OpenAI from "openai";
 
+// Simple cache to avoid repeating images in the same session
+const usedImages = new Set<string>();
+
 // Initialize OpenAI client
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
