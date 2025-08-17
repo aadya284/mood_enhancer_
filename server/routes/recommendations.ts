@@ -91,14 +91,30 @@ async function getUnsplashImage(query: string): Promise<string> {
 
       // Random fallback to avoid same image, ensuring uniqueness
       const randomImages = [
+        // Movies
         'https://images.pexels.com/photos/7991579/pexels-photo-7991579.jpeg?w=400&h=600&fit=crop',
+        'https://images.pexels.com/photos/33450578/pexels-photo-33450578.jpeg?w=400&h=600&fit=crop',
+
+        // Music
         'https://images.pexels.com/photos/3764004/pexels-photo-3764004.jpeg?w=400&h=600&fit=crop',
-        'https://images.pexels.com/photos/6956912/pexels-photo-6956912.jpeg?w=400&h=600&fit=crop',
-        'https://images.pexels.com/photos/1029141/pexels-photo-1029141.jpeg?w=400&h=600&fit=crop',
-        'https://images.pexels.com/photos/275033/pexels-photo-275033.jpeg?w=400&h=600&fit=crop',
-        'https://images.pexels.com/photos/2908984/pexels-photo-2908984.jpeg?w=400&h=600&fit=crop',
+        'https://images.pexels.com/photos/3693108/pexels-photo-3693108.jpeg?w=400&h=600&fit=crop',
         'https://images.pexels.com/photos/3693586/pexels-photo-3693586.jpeg?w=400&h=600&fit=crop',
+
+        // Podcasts
+        'https://images.pexels.com/photos/6956912/pexels-photo-6956912.jpeg?w=400&h=600&fit=crop',
+        'https://images.pexels.com/photos/33456955/pexels-photo-33456955.jpeg?w=400&h=600&fit=crop',
+
+        // Books
+        'https://images.pexels.com/photos/1029141/pexels-photo-1029141.jpeg?w=400&h=600&fit=crop',
+        'https://images.pexels.com/photos/2908984/pexels-photo-2908984.jpeg?w=400&h=600&fit=crop',
+        'https://images.pexels.com/photos/33451743/pexels-photo-33451743.jpeg?w=400&h=600&fit=crop',
+
+        // Games
+        'https://images.pexels.com/photos/275033/pexels-photo-275033.jpeg?w=400&h=600&fit=crop',
         'https://images.pexels.com/photos/442576/pexels-photo-442576.jpeg?w=400&h=600&fit=crop',
+        'https://images.pexels.com/photos/9833533/pexels-photo-9833533.jpeg?w=400&h=600&fit=crop',
+
+        // Additional variety
         'https://images.pexels.com/photos/163077/mario-luigi-yoschi-figures-163077.jpeg?w=400&h=600&fit=crop',
         'https://images.pexels.com/photos/998641/pexels-photo-998641.jpeg?w=400&h=600&fit=crop'
       ];
