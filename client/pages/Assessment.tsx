@@ -183,7 +183,7 @@ export default function Assessment() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gradient-start via-primary/20 to-gradient-end relative">
+    <div className="min-h-screen bg-gradient-to-br from-gradient-start via-background to-gradient-end relative dark">
       {/* Background Image */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-10"
