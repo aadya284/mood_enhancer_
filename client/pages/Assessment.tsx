@@ -218,7 +218,7 @@ export default function Assessment() {
           </div>
 
           {/* Question Card */}
-          <Card className="bg-white/10 border-white/20 backdrop-blur-sm mb-8">
+          <Card className="dark-card mb-8">
             <CardHeader>
               <div className="flex items-center gap-3 mb-4">
                 {currentQuestion.type === 'mood-emoji' && <Heart className="w-6 h-6 text-happy" />}
