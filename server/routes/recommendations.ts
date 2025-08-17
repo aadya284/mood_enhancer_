@@ -123,12 +123,12 @@ Please provide recommendations in this exact JSON format:
   "audiobooks": [
     {
       "title": "Book Title",
-      "description": "Brief description", 
+      "description": "Brief description",
       "genre": "Genre",
       "duration": "8h 30m",
       "rating": 4.6,
       "reason": "Why this matches their mood",
-      "searchQuery": "book cover audiobook"
+      "searchQuery": "Book Title Author book cover"
     }
   ],
   "games": [
