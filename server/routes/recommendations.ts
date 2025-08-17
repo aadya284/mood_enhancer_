@@ -202,23 +202,36 @@ Make sure all recommendations are real, popular content that exists. Focus on co
   } catch (error) {
     console.error('Error getting AI recommendations:', error);
     
-    // Fallback to a basic response if AI fails
+    // Fallback to diverse responses if AI fails
+    const fallbackMovies = [
+      {
+        id: "fallback_1",
+        title: "Spider-Man: Into the Spider-Verse",
+        description: "Animated superhero adventure",
+        genre: "Animation",
+        duration: "1h 57m",
+        rating: 4.8,
+        reason: "Visually stunning and uplifting",
+        imageUrl: await getUnsplashImage("Spider-Man Into Spider-Verse movie poster"),
+        externalUrl: "#"
+      },
+      {
+        id: "fallback_2",
+        title: "Dune",
+        description: "Epic sci-fi masterpiece",
+        genre: "Sci-Fi",
+        duration: "2h 35m",
+        rating: 4.7,
+        reason: "Immersive and visually breathtaking",
+        imageUrl: await getUnsplashImage("Dune 2021 movie poster"),
+        externalUrl: "#"
+      }
+    ];
+
     return {
       mood: assessment.mood,
       categories: {
-        movies: [
-          {
-            id: "fallback_1",
-            title: "The Pursuit of Happyness",
-            description: "An inspiring story of perseverance",
-            genre: "Drama",
-            duration: "1h 57m",
-            rating: 4.8,
-            reason: "Uplifting story to match your mood",
-            imageUrl: await getUnsplashImage("movie happy"),
-            externalUrl: "#"
-          }
-        ],
+        movies: fallbackMovies,
         music: [
           {
             id: "fallback_2", 
