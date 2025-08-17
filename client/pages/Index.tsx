@@ -167,7 +167,7 @@ export default function Index() {
           </div>
           
           <div className="grid md:grid-cols-3 gap-8">
-            <Card className="bg-white/10 border-white/20 backdrop-blur-sm">
+            <Card className="dark-card">
               <CardHeader>
                 <Heart className="w-12 h-12 text-happy mb-4" />
                 <CardTitle className="text-white">Share Your Mood</CardTitle>
@@ -177,7 +177,7 @@ export default function Index() {
               </CardHeader>
             </Card>
             
-            <Card className="bg-white/10 border-white/20 backdrop-blur-sm">
+            <Card className="dark-card">
               <CardHeader>
                 <Zap className="w-12 h-12 text-calm mb-4" />
                 <CardTitle className="text-white">AI Analysis</CardTitle>
@@ -187,7 +187,7 @@ export default function Index() {
               </CardHeader>
             </Card>
             
-            <Card className="bg-white/10 border-white/20 backdrop-blur-sm">
+            <Card className="dark-card">
               <CardHeader>
                 <TrendingUp className="w-12 h-12 text-happy mb-4" />
                 <CardTitle className="text-white">Get Recommendations</CardTitle>
