@@ -46,8 +46,15 @@ export default function Index() {
       </nav>
 
       {/* Hero Section */}
-      <section className="py-20 text-center text-white">
-        <div className="container mx-auto px-4">
+      <section className="relative py-20 text-center text-white overflow-hidden">
+        {/* Background Image */}
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20"
+          style={{
+            backgroundImage: 'url(https://images.pexels.com/photos/3862601/pexels-photo-3862601.jpeg)'
+          }}
+        />
+        <div className="relative z-10 container mx-auto px-4">
           <Badge className="mb-6 bg-white/10 text-white border-white/20 hover:bg-white/20">
             <Sparkles className="w-4 h-4 mr-2" />
             AI-Powered Mood Enhancement
