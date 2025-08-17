@@ -76,6 +76,7 @@ export default function Recommendations() {
 
     try {
       const answers = JSON.parse(assessmentData);
+      console.log('Making API call with data:', answers);
 
       // Call real backend API for AI-powered recommendations
       const response = await fetch('/api/recommendations', {
@@ -86,11 +87,17 @@ export default function Recommendations() {
         body: JSON.stringify(answers),
       });
 
+      console.log('API Response status:', response.status);
+      console.log('API Response headers:', Object.fromEntries(response.headers.entries()));
+
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        const errorText = await response.text();
+        console.error('API Error Response:', errorText);
+        throw new Error(`HTTP error! status: ${response.status} - ${errorText}`);
       }
 
       const aiRecommendations: RecommendationData = await response.json();
+      console.log('Received recommendations:', aiRecommendations);
       setRecommendations(aiRecommendations);
 
     } catch (error) {
