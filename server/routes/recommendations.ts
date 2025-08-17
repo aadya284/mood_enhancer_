@@ -117,7 +117,7 @@ Please provide recommendations in this exact JSON format:
       "duration": "45m",
       "rating": 4.7,
       "reason": "Why this matches their mood",
-      "searchQuery": "podcast microphone"
+      "searchQuery": "Podcast Title podcast logo cover"
     }
   ],
   "audiobooks": [
