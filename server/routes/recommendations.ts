@@ -346,7 +346,7 @@ Make sure all recommendations are real, popular content that exists. Focus on co
             duration: "5h 35m",
             rating: 4.8,
             reason: "Practical strategies for positive change",
-            imageUrl: await getUnsplashImage("Atomic Habits James Clear book cover"),
+            imageUrl: await getUnsplashImage("atomic habits self improvement"),
             externalUrl: "#"
           },
           {
@@ -357,7 +357,7 @@ Make sure all recommendations are real, popular content that exists. Focus on co
             duration: "8h 30m",
             rating: 4.6,
             reason: "Thought-provoking and uplifting story",
-            imageUrl: await getUnsplashImage("Midnight Library Matt Haig book cover"),
+            imageUrl: await getUnsplashImage("midnight library books"),
             externalUrl: "#"
           }
         ],
