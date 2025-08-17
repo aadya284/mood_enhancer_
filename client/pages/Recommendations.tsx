@@ -440,10 +440,9 @@ export default function Recommendations() {
             e.currentTarget.src = '/placeholder.svg';
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+        <div className="absolute left-0 right-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent" style={{top: '26px'}} />
         <Badge className="absolute top-3 right-3 bg-primary/90 text-white border-none">
           <Star className="w-3 h-3 mr-1" />
-          {item.rating}
         </Badge>
       </div>
       <CardHeader>
