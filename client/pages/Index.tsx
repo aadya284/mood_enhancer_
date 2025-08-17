@@ -93,7 +93,7 @@ export default function Index() {
       </section>
 
       {/* Content Categories */}
-      <section className="py-16 bg-white/5 backdrop-blur-sm">
+      <section className="py-16 bg-black/20 backdrop-blur-sm">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-bold text-center text-white mb-12">
             All Your Favorite Content in One Place
