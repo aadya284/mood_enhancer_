@@ -442,15 +442,8 @@ export default function Recommendations() {
       <CardHeader>
         <div className="flex justify-between items-start">
           <div className="flex-1">
-            <CardTitle className="text-white mb-2 flex items-center gap-2">
+            <CardTitle className="text-white mb-2">
               {item.title}
-              <Badge
-                variant="secondary"
-                className="bg-primary/20 text-primary text-xs"
-              >
-                <Star className="w-3 h-3 mr-1" />
-                {item.rating}
-              </Badge>
             </CardTitle>
             <CardDescription className="text-white/70 mb-2">
               {item.description}
