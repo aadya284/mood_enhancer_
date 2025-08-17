@@ -322,7 +322,7 @@ Make sure all recommendations are real, popular content that exists. Focus on co
             duration: "2h 45m",
             rating: 4.8,
             reason: "Engaging discussions to shift your focus",
-            imageUrl: await getUnsplashImage("Joe Rogan Experience podcast logo"),
+            imageUrl: await getUnsplashImage("joe rogan microphone studio"),
             externalUrl: "#"
           },
           {
@@ -333,7 +333,7 @@ Make sure all recommendations are real, popular content that exists. Focus on co
             duration: "1h 15m",
             rating: 4.7,
             reason: "Lighthearted humor to boost mood",
-            imageUrl: await getUnsplashImage("Conan O'Brien podcast cover"),
+            imageUrl: await getUnsplashImage("conan comedy podcast"),
             externalUrl: "#"
           }
         ],
