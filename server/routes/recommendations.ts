@@ -282,14 +282,25 @@ Make sure all recommendations are real, popular content that exists. Focus on co
         ],
         audiobooks: [
           {
-            id: "fallback_4",
-            title: "The Power of Positive Thinking",
-            description: "Classic self-help audiobook",
+            id: "fallback_7",
+            title: "Atomic Habits - James Clear",
+            description: "Transform your life with tiny changes",
             genre: "Self-Help",
+            duration: "5h 35m",
+            rating: 4.8,
+            reason: "Practical strategies for positive change",
+            imageUrl: await getUnsplashImage("Atomic Habits James Clear book cover"),
+            externalUrl: "#"
+          },
+          {
+            id: "fallback_8",
+            title: "The Midnight Library - Matt Haig",
+            description: "Philosophical novel about life's possibilities",
+            genre: "Fiction",
             duration: "8h 30m",
             rating: 4.6,
-            reason: "Reinforce your positive outlook",
-            imageUrl: await getUnsplashImage("audiobook headphones"),
+            reason: "Thought-provoking and uplifting story",
+            imageUrl: await getUnsplashImage("Midnight Library Matt Haig book cover"),
             externalUrl: "#"
           }
         ],
