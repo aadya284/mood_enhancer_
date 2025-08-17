@@ -173,7 +173,7 @@ export default function Assessment() {
             value={answers[currentQuestion.id] || ''}
             onChange={(e) => handleAnswer(e.target.value)}
             placeholder={currentQuestion.placeholder}
-            className="min-h-32 bg-white/10 border-white/20 text-white placeholder:text-white/50 resize-none"
+            className="min-h-32 bg-black/20 border-white/20 text-white placeholder:text-white/50 resize-none"
           />
         );
 
