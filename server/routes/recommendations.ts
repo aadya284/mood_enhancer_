@@ -42,21 +42,59 @@ interface RecommendationResponse {
 async function getUnsplashImage(query: string): Promise<string> {
   try {
     if (!process.env.UNSPLASH_ACCESS_KEY) {
-      // Use high-quality placeholder images from Pexels
-      const categoryImages: Record<string, string> = {
+      // Use diverse high-quality images from Pexels based on specific content
+      const specificImages: Record<string, string> = {
+        // Movies
+        'spider-man': 'https://images.pexels.com/photos/163077/mario-luigi-yoschi-figures-163077.jpeg?w=400&h=600&fit=crop',
+        'dune': 'https://images.pexels.com/photos/998641/pexels-photo-998641.jpeg?w=400&h=600&fit=crop',
         'movie': 'https://images.pexels.com/photos/7991579/pexels-photo-7991579.jpeg?w=400&h=600&fit=crop',
+
+        // Music
+        'weeknd': 'https://images.pexels.com/photos/3693586/pexels-photo-3693586.jpeg?w=400&h=600&fit=crop',
+        'dua lipa': 'https://images.pexels.com/photos/3756242/pexels-photo-3756242.jpeg?w=400&h=600&fit=crop',
         'music': 'https://images.pexels.com/photos/3764004/pexels-photo-3764004.jpeg?w=400&h=600&fit=crop',
-        'podcast': 'https://images.pexels.com/photos/6956912/pexels-photo-6956912.jpeg?w=400&h=600&fit=crop',
-        'book': 'https://images.pexels.com/photos/1029141/pexels-photo-1029141.jpeg?w=400&h=600&fit=crop',
-        'game': 'https://images.pexels.com/photos/275033/pexels-photo-275033.jpeg?w=400&h=600&fit=crop'
+
+        // Podcasts
+        'joe rogan': 'https://images.pexels.com/photos/7562313/pexels-photo-7562313.jpeg?w=400&h=600&fit=crop',
+        'conan': 'https://images.pexels.com/photos/6956912/pexels-photo-6956912.jpeg?w=400&h=600&fit=crop',
+        'podcast': 'https://images.pexels.com/photos/4226140/pexels-photo-4226140.jpeg?w=400&h=600&fit=crop',
+
+        // Books
+        'atomic habits': 'https://images.pexels.com/photos/1029141/pexels-photo-1029141.jpeg?w=400&h=600&fit=crop',
+        'midnight library': 'https://images.pexels.com/photos/2908984/pexels-photo-2908984.jpeg?w=400&h=600&fit=crop',
+        'book': 'https://images.pexels.com/photos/159866/books-book-pages-read-literature-159866.jpeg?w=400&h=600&fit=crop',
+
+        // Games
+        'hades': 'https://images.pexels.com/photos/275033/pexels-photo-275033.jpeg?w=400&h=600&fit=crop',
+        'zelda': 'https://images.pexels.com/photos/442576/pexels-photo-442576.jpeg?w=400&h=600&fit=crop',
+        'game': 'https://images.pexels.com/photos/3165335/pexels-photo-3165335.jpeg?w=400&h=600&fit=crop'
       };
 
-      for (const [key, url] of Object.entries(categoryImages)) {
-        if (query.toLowerCase().includes(key)) {
+      // Try to find specific image based on query content
+      const lowerQuery = query.toLowerCase();
+      for (const [key, url] of Object.entries(specificImages)) {
+        if (lowerQuery.includes(key)) {
           return url;
         }
       }
-      return categoryImages.movie; // Default fallback
+
+      // Fallback to category-based images
+      const categoryImages = ['movie', 'music', 'podcast', 'book', 'game'];
+      for (const category of categoryImages) {
+        if (lowerQuery.includes(category)) {
+          return specificImages[category];
+        }
+      }
+
+      // Random fallback to avoid same image
+      const randomImages = [
+        'https://images.pexels.com/photos/7991579/pexels-photo-7991579.jpeg?w=400&h=600&fit=crop',
+        'https://images.pexels.com/photos/3764004/pexels-photo-3764004.jpeg?w=400&h=600&fit=crop',
+        'https://images.pexels.com/photos/6956912/pexels-photo-6956912.jpeg?w=400&h=600&fit=crop',
+        'https://images.pexels.com/photos/1029141/pexels-photo-1029141.jpeg?w=400&h=600&fit=crop',
+        'https://images.pexels.com/photos/275033/pexels-photo-275033.jpeg?w=400&h=600&fit=crop'
+      ];
+      return randomImages[Math.floor(Math.random() * randomImages.length)];
     }
 
     const response = await fetch(
