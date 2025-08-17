@@ -95,7 +95,7 @@ Please provide recommendations in this exact JSON format:
       "duration": "1h 30m",
       "rating": 4.5,
       "reason": "Why this matches their mood",
-      "searchQuery": "movie poster search term"
+      "searchQuery": "Movie Title 2023 movie poster"
     }
   ],
   "music": [
