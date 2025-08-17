@@ -238,7 +238,7 @@ export default function Dashboard() {
               </CardContent>
             </Card>
 
-            <Card className="bg-white/10 border-white/20 backdrop-blur-sm">
+            <Card className="dark-card">
               <CardHeader className="pb-2">
                 <CardTitle className="text-white flex items-center gap-2">
                   <Calendar className="w-5 h-5 text-primary" />
@@ -253,7 +253,7 @@ export default function Dashboard() {
               </CardContent>
             </Card>
 
-            <Card className="bg-white/10 border-white/20 backdrop-blur-sm">
+            <Card className="dark-card">
               <CardHeader className="pb-2">
                 <CardTitle className="text-white flex items-center gap-2">
                   <Heart className="w-5 h-5 text-primary" />
@@ -270,7 +270,7 @@ export default function Dashboard() {
               </CardContent>
             </Card>
 
-            <Card className="bg-white/10 border-white/20 backdrop-blur-sm">
+            <Card className="dark-card">
               <CardHeader className="pb-2">
                 <CardTitle className="text-white flex items-center gap-2">
                   <TrendingUp className="w-5 h-5 text-primary" />
