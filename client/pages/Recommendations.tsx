@@ -421,7 +421,7 @@ export default function Recommendations() {
   const renderRecommendationCard = (item: Recommendation, category: string) => (
     <Card
       key={item.id}
-      className="bg-white/10 border-white/20 backdrop-blur-sm hover:bg-white/15 transition-all duration-300 overflow-hidden"
+      className="dark-card hover:bg-white/10 transition-all duration-300 overflow-hidden"
     >
       {/* Recommendation Image */}
       <div className="relative h-48 w-full overflow-hidden">
