@@ -129,11 +129,15 @@ async function getUnsplashImage(query: string): Promise<string> {
     const data = await response.json();
 
     if (data.results && data.results.length > 0) {
-      return data.results[0].urls.regular;
+      const imageUrl = data.results[0].urls.regular;
+      usedImages.add(imageUrl);
+      return imageUrl;
     }
 
     // Fallback to high-quality Pexels images
-    return 'https://images.pexels.com/photos/7991579/pexels-photo-7991579.jpeg?w=400&h=600&fit=crop';
+    const fallbackUrl = 'https://images.pexels.com/photos/7991579/pexels-photo-7991579.jpeg?w=400&h=600&fit=crop';
+    usedImages.add(fallbackUrl);
+    return fallbackUrl;
   } catch (error) {
     console.error('Error fetching Unsplash image:', error);
     // Return high-quality fallback instead of placeholder.svg
