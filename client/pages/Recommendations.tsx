@@ -506,7 +506,7 @@ export default function Recommendations() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gradient-start via-background to-gradient-end dark">
       {/* Navigation */}
-      <nav className="border-b border-white/10 backdrop-blur-md bg-white/5">
+      <nav className="dark-nav">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <Link to="/" className="flex items-center space-x-2">
