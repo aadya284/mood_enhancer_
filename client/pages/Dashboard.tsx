@@ -203,7 +203,7 @@ export default function Dashboard() {
 
         {/* Period Selector */}
         <div className="flex justify-center mb-8">
-          <div className="flex bg-white/10 rounded-lg p-1 backdrop-blur-sm">
+          <div className="flex bg-black/20 rounded-lg p-1 backdrop-blur-sm border border-white/10">
             {(['week', 'month', 'year'] as const).map((period) => (
               <Button
                 key={period}
