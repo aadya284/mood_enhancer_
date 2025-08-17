@@ -74,18 +74,35 @@ export default function Recommendations() {
       return;
     }
 
-    const answers = JSON.parse(assessmentData);
+    try {
+      const answers = JSON.parse(assessmentData);
 
-    // Simulate API call to get recommendations
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+      // Call real backend API for AI-powered recommendations
+      const response = await fetch('/api/recommendations', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(answers),
+      });
 
-    // Generate mock recommendations based on mood (fallback to 'happy' if mood is undefined)
-    const mockRecommendations: RecommendationData = generateMockRecommendations(
-      answers.mood || "happy",
-    );
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
 
-    setRecommendations(mockRecommendations);
-    setIsLoading(false);
+      const aiRecommendations: RecommendationData = await response.json();
+      setRecommendations(aiRecommendations);
+
+    } catch (error) {
+      console.error('Error loading recommendations:', error);
+
+      // Fallback to mock data if API fails
+      const answers = JSON.parse(assessmentData);
+      const mockRecommendations: RecommendationData = generateMockRecommendations(answers.mood || 'happy');
+      setRecommendations(mockRecommendations);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const generateMockRecommendations = (mood: string): RecommendationData => {
