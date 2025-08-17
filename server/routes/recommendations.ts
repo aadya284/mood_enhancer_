@@ -106,7 +106,7 @@ Please provide recommendations in this exact JSON format:
       "duration": "3:45",
       "rating": 4.8,
       "reason": "Why this matches their mood",
-      "searchQuery": "album cover search term"
+      "searchQuery": "Artist Name Album Title album cover"
     }
   ],
   "podcasts": [
