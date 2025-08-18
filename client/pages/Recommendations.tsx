@@ -413,7 +413,7 @@ export default function Recommendations() {
             No Assessment Found
           </h2>
           <p className="text-white/70 mb-6">
-            Please complete the mood assessment first.
+            Please check your mood first.
           </p>
           <Link to="/assess">
             <Button className="bg-white text-primary hover:bg-white/90">
