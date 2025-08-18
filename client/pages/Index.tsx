@@ -224,10 +224,10 @@ export default function Index() {
       <section className="py-20 text-center">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-bold text-white mb-6">
-            Ready to Enhance Your Mood?
+            Ready to Boost Your Mood?
           </h2>
           <p className="text-xl text-white/80 mb-8 max-w-2xl mx-auto">
-            Join thousands of users who have transformed their daily experience with personalized content recommendations.
+            Join thousands of users who have transformed their daily mood with personalized content recommendations.
           </p>
           <Link to="/assess">
             <Button size="lg" className="bg-white text-primary hover:bg-white/90 text-lg px-8 py-4">
