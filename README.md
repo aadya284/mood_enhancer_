@@ -1,4 +1,4 @@
-# 🧠 MoodEnhancer - AI-Powered Mood Enhancement Platform
+# 🧠 Moody - AI-Powered Mood Enhancement Platform
 
 A beautiful, modern web application that uses AI to analyze your mood and provide personalized recommendations for movies, music, podcasts, audiobooks, and games to enhance your emotional well-being.
 
