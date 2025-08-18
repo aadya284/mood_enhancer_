@@ -404,7 +404,7 @@ export default function Dashboard() {
                 </div>
                 <div className="flex items-center gap-2 text-white/80">
                   <div className="w-2 h-2 bg-primary rounded-full"></div>
-                  <span className="text-sm">Regular assessments boost your awareness</span>
+                  <span className="text-sm">Regular mood checks boost your awareness</span>
                 </div>
               </div>
             </CardContent>
