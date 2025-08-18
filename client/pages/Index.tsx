@@ -69,8 +69,8 @@ export default function Index() {
           </h1>
           
           <p className="text-xl text-white/80 max-w-3xl mx-auto mb-8 leading-relaxed">
-            Share your mood, experiences, and preferences. Get instant recommendations for movies, music, 
-            podcasts, audiobooks, and games tailored specifically to enhance your emotional well-being.
+            Share your mood, experiences, and preferences. Get instant recommendations for movies, music,
+            podcasts, audiobooks, and games tailored specifically to boost your mood.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
