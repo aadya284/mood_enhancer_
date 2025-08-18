@@ -518,7 +518,7 @@ export default function Recommendations() {
             <Link to="/" className="flex items-center space-x-2">
               <Brain className="h-8 w-8 text-primary" />
               <span className="text-2xl font-bold text-white">
-                MoodEnhancer
+                Moody
               </span>
             </Link>
             <div className="flex items-center space-x-4">
