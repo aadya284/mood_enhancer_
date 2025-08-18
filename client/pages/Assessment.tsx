@@ -122,7 +122,11 @@ const moodEmojis = {
   angry: { emoji: "😠", label: "Angry", color: "text-angry" },
   calm: { emoji: "😌", label: "Calm", color: "text-calm" },
   stressed: { emoji: "😰", label: "Stressed", color: "text-orange-500" },
-  excited: { emoji: "🤩", label: "Excited", color: "text-happy" }
+  excited: { emoji: "🤩", label: "Excited", color: "text-happy" },
+  confused: { emoji: "😕", label: "Confused", color: "text-purple-400" },
+  lonely: { emoji: "😔", label: "Lonely", color: "text-blue-400" },
+  grateful: { emoji: "🙏", label: "Grateful", color: "text-green-400" },
+  anxious: { emoji: "😟", label: "Anxious", color: "text-yellow-500" }
 };
 
 export default function Assessment() {
