@@ -420,7 +420,7 @@ export default function Dashboard() {
             <CardContent>
               <div className="space-y-3">
                 <div className="text-white/80 text-sm">
-                  ✨ Try taking assessments at consistent times daily
+                  ✨ Try checking your mood at consistent times daily
                 </div>
                 <div className="text-white/80 text-sm">
                   🎵 Continue exploring music - it's your top mood booster!
