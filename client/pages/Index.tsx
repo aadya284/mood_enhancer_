@@ -1,21 +1,27 @@
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "react-router-dom";
-import { 
-  Brain, 
-  Music, 
-  Film, 
-  Headphones, 
-  Gamepad2, 
-  BookOpen, 
+import {
+  Brain,
+  Music,
+  Film,
+  Headphones,
+  Gamepad2,
+  BookOpen,
   Sparkles,
   Heart,
   TrendingUp,
   Users,
   Zap,
   Shield,
-  ArrowRight
+  ArrowRight,
 } from "lucide-react";
 
 export default function Index() {
@@ -31,7 +37,10 @@ export default function Index() {
             </div>
             <div className="flex items-center space-x-4">
               <Link to="/dashboard">
-                <Button variant="ghost" className="text-white hover:bg-white/10">
+                <Button
+                  variant="ghost"
+                  className="text-white hover:bg-white/10"
+                >
                   Dashboard
                 </Button>
               </Link>
@@ -51,7 +60,8 @@ export default function Index() {
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-10"
           style={{
-            backgroundImage: 'url(https://images.pexels.com/photos/3862601/pexels-photo-3862601.jpeg)'
+            backgroundImage:
+              "url(https://images.pexels.com/photos/3862601/pexels-photo-3862601.jpeg)",
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-br from-black/30 via-transparent to-black/50" />
@@ -60,30 +70,34 @@ export default function Index() {
             <Sparkles className="w-4 h-4 mr-2" />
             AI-Powered Mood Enhancement
           </Badge>
-          
+
           <h1 className="text-6xl font-bold mb-6 bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">
             Transform Your Mood with
             <span className="block text-transparent bg-gradient-to-r from-happy to-calm bg-clip-text">
               Moody
             </span>
           </h1>
-          
+
           <p className="text-xl text-white/80 max-w-3xl mx-auto mb-8 leading-relaxed">
-            Share your mood, experiences, and preferences. Get instant recommendations for movies, music,
-            podcasts, audiobooks, and games tailored specifically to boost your mood.
+            Share your mood, experiences, and preferences. Get instant
+            recommendations for movies, music, podcasts, audiobooks, and games
+            tailored specifically to boost your mood.
           </p>
-          
+
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Link to="/assess">
-              <Button size="lg" className="bg-white text-primary hover:bg-white/90 text-lg px-8 py-4">
+              <Button
+                size="lg"
+                className="bg-white text-primary hover:bg-white/90 text-lg px-8 py-4"
+              >
                 <Brain className="w-5 h-5 mr-2" />
                 Check Your Mood
                 <ArrowRight className="w-5 h-5 ml-2" />
               </Button>
             </Link>
-            <Button 
-              size="lg" 
-              variant="outline" 
+            <Button
+              size="lg"
+              variant="outline"
               className="border-white/30 text-white hover:bg-white/10 text-lg px-8 py-4"
             >
               Watch Demo
@@ -98,7 +112,7 @@ export default function Index() {
           <h2 className="text-4xl font-bold text-center text-white mb-12">
             All Your Favorite Content in One Place
           </h2>
-          
+
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
             {[
               {
@@ -106,46 +120,58 @@ export default function Index() {
                 label: "Movies",
                 color: "text-red-400",
                 description: "Curated films for every mood",
-                bgImage: "https://images.pexels.com/photos/7991579/pexels-photo-7991579.jpeg"
+                bgImage:
+                  "https://images.pexels.com/photos/7991579/pexels-photo-7991579.jpeg",
               },
               {
                 icon: Music,
                 label: "Music",
                 color: "text-green-400",
                 description: "Perfect playlists and songs",
-                bgImage: "https://images.pexels.com/photos/3764004/pexels-photo-3764004.jpeg"
+                bgImage:
+                  "https://images.pexels.com/photos/3764004/pexels-photo-3764004.jpeg",
               },
               {
                 icon: Headphones,
                 label: "Podcasts",
                 color: "text-purple-400",
                 description: "Inspiring conversations",
-                bgImage: "https://images.pexels.com/photos/6724383/pexels-photo-6724383.jpeg"
+                bgImage:
+                  "https://images.pexels.com/photos/6724383/pexels-photo-6724383.jpeg",
               },
               {
                 icon: BookOpen,
                 label: "Audiobooks",
                 color: "text-blue-400",
                 description: "Stories that heal",
-                bgImage: "https://images.pexels.com/photos/3862601/pexels-photo-3862601.jpeg"
+                bgImage:
+                  "https://images.pexels.com/photos/3862601/pexels-photo-3862601.jpeg",
               },
               {
                 icon: Gamepad2,
                 label: "Games",
                 color: "text-yellow-400",
                 description: "Interactive entertainment",
-                bgImage: "https://images.pexels.com/photos/11790883/pexels-photo-11790883.jpeg"
+                bgImage:
+                  "https://images.pexels.com/photos/11790883/pexels-photo-11790883.jpeg",
               },
             ].map((item, index) => (
-              <Card key={index} className="relative dark-card hover:bg-white/10 transition-all duration-300 text-center overflow-hidden group">
+              <Card
+                key={index}
+                className="relative dark-card hover:bg-white/10 transition-all duration-300 text-center overflow-hidden group"
+              >
                 {/* Background Image */}
                 <div
                   className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110 opacity-30"
                   style={{ backgroundImage: `url(${item.bgImage})` }}
                 />
                 <CardContent className="relative z-10 p-6">
-                  <item.icon className={`w-12 h-12 mx-auto mb-4 ${item.color}`} />
-                  <h3 className="text-lg font-semibold text-white mb-2">{item.label}</h3>
+                  <item.icon
+                    className={`w-12 h-12 mx-auto mb-4 ${item.color}`}
+                  />
+                  <h3 className="text-lg font-semibold text-white mb-2">
+                    {item.label}
+                  </h3>
                   <p className="text-white/70 text-sm">{item.description}</p>
                 </CardContent>
               </Card>
@@ -162,37 +188,43 @@ export default function Index() {
               How Moody Works
             </h2>
             <p className="text-xl text-white/80 max-w-2xl mx-auto">
-              Our AI analyzes your responses to provide personalized content recommendations that match your current emotional state.
+              Our AI analyzes your responses to provide personalized content
+              recommendations that match your current emotional state.
             </p>
           </div>
-          
+
           <div className="grid md:grid-cols-3 gap-8">
             <Card className="dark-card">
               <CardHeader>
                 <Heart className="w-12 h-12 text-happy mb-4" />
                 <CardTitle className="text-white">Share Your Mood</CardTitle>
                 <CardDescription className="text-white/70">
-                  Tell us about your day, feelings, and current emotional state through our guided questionnaire.
+                  Tell us about your day, feelings, and current emotional state
+                  through our guided questionnaire.
                 </CardDescription>
               </CardHeader>
             </Card>
-            
+
             <Card className="dark-card">
               <CardHeader>
                 <Zap className="w-12 h-12 text-calm mb-4" />
                 <CardTitle className="text-white">AI Analysis</CardTitle>
                 <CardDescription className="text-white/70">
-                  Our advanced AI processes your responses to understand your preferences and emotional needs.
+                  Our advanced AI processes your responses to understand your
+                  preferences and emotional needs.
                 </CardDescription>
               </CardHeader>
             </Card>
-            
+
             <Card className="dark-card">
               <CardHeader>
                 <TrendingUp className="w-12 h-12 text-happy mb-4" />
-                <CardTitle className="text-white">Get Recommendations</CardTitle>
+                <CardTitle className="text-white">
+                  Get Recommendations
+                </CardTitle>
                 <CardDescription className="text-white/70">
-                  Receive personalized content suggestions designed to improve your mood and well-being.
+                  Receive personalized content suggestions designed to improve
+                  your mood and well-being.
                 </CardDescription>
               </CardHeader>
             </Card>
@@ -227,10 +259,14 @@ export default function Index() {
             Ready to Boost Your Mood?
           </h2>
           <p className="text-xl text-white/80 mb-8 max-w-2xl mx-auto">
-            Join thousands of users who have transformed their daily mood with personalized content recommendations.
+            Join thousands of users who have transformed their daily mood with
+            personalized content recommendations.
           </p>
           <Link to="/assess">
-            <Button size="lg" className="bg-white text-primary hover:bg-white/90 text-lg px-8 py-4">
+            <Button
+              size="lg"
+              className="bg-white text-primary hover:bg-white/90 text-lg px-8 py-4"
+            >
               <Brain className="w-5 h-5 mr-2" />
               Start Your Journey
               <ArrowRight className="w-5 h-5 ml-2" />
@@ -243,10 +279,12 @@ export default function Index() {
       <footer className="border-t border-white/10 bg-black/30 backdrop-blur-sm py-8">
         <div className="container mx-auto px-4 text-center text-white/60">
           <div className="flex items-center justify-center space-x-2 mb-4">
-          <Brain className="h-6 w-6 text-primary" />
-          <span className="text-lg font-semibold text-white">Moody</span>
-        </div>
-        <p>&copy; 2024 Moody. Boosting your mood through personalized content.</p>
+            <Brain className="h-6 w-6 text-primary" />
+            <span className="text-lg font-semibold text-white">Moody</span>
+          </div>
+          <p>
+            &copy; 2024 Moody. Boosting your mood through personalized content.
+          </p>
         </div>
       </footer>
     </div>

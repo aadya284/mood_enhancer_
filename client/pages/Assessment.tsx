@@ -1,30 +1,36 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
 import { Link, useNavigate } from "react-router-dom";
-import { 
-  Brain, 
-  ArrowLeft, 
-  ArrowRight, 
-  Heart, 
-  Frown, 
-  Smile, 
-  Meh, 
+import {
+  Brain,
+  ArrowLeft,
+  ArrowRight,
+  Heart,
+  Frown,
+  Smile,
+  Meh,
   Sun,
   Cloud,
   CloudRain,
-  Zap
+  Zap,
 } from "lucide-react";
 
 interface Question {
   id: string;
   question: string;
-  type: 'radio' | 'textarea' | 'mood-emoji';
+  type: "radio" | "textarea" | "mood-emoji";
   options?: string[];
   placeholder?: string;
 }
@@ -34,38 +40,52 @@ const questions: Question[] = [
     id: "mood",
     question: "How are you feeling right now?",
     type: "mood-emoji",
-    options: ["happy", "sad", "angry", "calm", "stressed", "excited"]
+    options: ["happy", "sad", "angry", "calm", "stressed", "excited"],
   },
   {
     id: "day",
     question: "How was your day overall?",
     type: "radio",
-    options: ["Amazing", "Good", "Okay", "Difficult", "Terrible"]
+    options: ["Amazing", "Good", "Okay", "Difficult", "Terrible"],
   },
   {
     id: "energy",
     question: "What's your current energy level?",
     type: "radio",
-    options: ["Very High", "High", "Medium", "Low", "Very Low"]
+    options: ["Very High", "High", "Medium", "Low", "Very Low"],
   },
   {
     id: "preferences",
     question: "What type of content usually helps you feel better?",
     type: "radio",
-    options: ["Uplifting movies", "Calming music", "Inspiring podcasts", "Engaging games", "Educational audiobooks", "Comedy content"]
+    options: [
+      "Uplifting movies",
+      "Calming music",
+      "Inspiring podcasts",
+      "Engaging games",
+      "Educational audiobooks",
+      "Comedy content",
+    ],
   },
   {
     id: "activity",
     question: "What would you like to do right now?",
     type: "radio",
-    options: ["Watch something", "Listen to music", "Play games", "Learn something new", "Relax and unwind"]
+    options: [
+      "Watch something",
+      "Listen to music",
+      "Play games",
+      "Learn something new",
+      "Relax and unwind",
+    ],
   },
   {
     id: "story",
     question: "Tell us about what happened today. What's on your mind?",
     type: "textarea",
-    placeholder: "Share your thoughts, experiences, or anything that's affecting your mood..."
-  }
+    placeholder:
+      "Share your thoughts, experiences, or anything that's affecting your mood...",
+  },
 ];
 
 const moodEmojis = {
@@ -74,7 +94,7 @@ const moodEmojis = {
   angry: { emoji: "😠", label: "Angry", color: "text-angry" },
   calm: { emoji: "😌", label: "Calm", color: "text-calm" },
   stressed: { emoji: "😰", label: "Stressed", color: "text-orange-500" },
-  excited: { emoji: "🤩", label: "Excited", color: "text-happy" }
+  excited: { emoji: "🤩", label: "Excited", color: "text-happy" },
 };
 
 export default function Assessment() {
@@ -87,15 +107,15 @@ export default function Assessment() {
   const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
 
   const handleAnswer = (value: string) => {
-    setAnswers(prev => ({
+    setAnswers((prev) => ({
       ...prev,
-      [currentQuestion.id]: value
+      [currentQuestion.id]: value,
     }));
   };
 
   const handleNext = () => {
     if (currentQuestionIndex < questions.length - 1) {
-      setCurrentQuestionIndex(prev => prev + 1);
+      setCurrentQuestionIndex((prev) => prev + 1);
     } else {
       handleSubmit();
     }
@@ -103,28 +123,30 @@ export default function Assessment() {
 
   const handlePrevious = () => {
     if (currentQuestionIndex > 0) {
-      setCurrentQuestionIndex(prev => prev - 1);
+      setCurrentQuestionIndex((prev) => prev - 1);
     }
   };
 
   const handleSubmit = async () => {
     setIsLoading(true);
     // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+
     // Store responses in localStorage for demo
-    localStorage.setItem('moodAssessment', JSON.stringify(answers));
-    
-    navigate('/recommendations');
+    localStorage.setItem("moodAssessment", JSON.stringify(answers));
+
+    navigate("/recommendations");
   };
 
   const isCurrentAnswered = () => {
-    return answers[currentQuestion.id] && answers[currentQuestion.id].trim() !== '';
+    return (
+      answers[currentQuestion.id] && answers[currentQuestion.id].trim() !== ""
+    );
   };
 
   const renderQuestionInput = () => {
     switch (currentQuestion.type) {
-      case 'mood-emoji':
+      case "mood-emoji":
         return (
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
             {currentQuestion.options?.map((mood) => {
@@ -134,14 +156,16 @@ export default function Assessment() {
                   key={mood}
                   className={`cursor-pointer transition-all duration-200 border-2 hover:scale-105 ${
                     answers[currentQuestion.id] === mood
-                      ? 'border-primary bg-primary/20 dark-card'
-                      : 'dark-card hover:bg-white/5'
+                      ? "border-primary bg-primary/20 dark-card"
+                      : "dark-card hover:bg-white/5"
                   }`}
                   onClick={() => handleAnswer(mood)}
                 >
                   <CardContent className="p-6 text-center">
                     <div className="text-4xl mb-2">{moodData.emoji}</div>
-                    <div className={`font-medium ${moodData.color}`}>{moodData.label}</div>
+                    <div className={`font-medium ${moodData.color}`}>
+                      {moodData.label}
+                    </div>
                   </CardContent>
                 </Card>
               );
@@ -149,17 +173,27 @@ export default function Assessment() {
           </div>
         );
 
-      case 'radio':
+      case "radio":
         return (
           <RadioGroup
-            value={answers[currentQuestion.id] || ''}
+            value={answers[currentQuestion.id] || ""}
             onValueChange={handleAnswer}
             className="space-y-3"
           >
             {currentQuestion.options?.map((option, index) => (
-              <div key={index} className="flex items-center space-x-3 p-3 rounded-lg bg-white/5 hover:bg-white/10 transition-colors border border-white/10">
-                <RadioGroupItem value={option} id={`option-${index}`} className="border-white/30" />
-                <Label htmlFor={`option-${index}`} className="text-white cursor-pointer flex-1">
+              <div
+                key={index}
+                className="flex items-center space-x-3 p-3 rounded-lg bg-white/5 hover:bg-white/10 transition-colors border border-white/10"
+              >
+                <RadioGroupItem
+                  value={option}
+                  id={`option-${index}`}
+                  className="border-white/30"
+                />
+                <Label
+                  htmlFor={`option-${index}`}
+                  className="text-white cursor-pointer flex-1"
+                >
                   {option}
                 </Label>
               </div>
@@ -167,10 +201,10 @@ export default function Assessment() {
           </RadioGroup>
         );
 
-      case 'textarea':
+      case "textarea":
         return (
           <Textarea
-            value={answers[currentQuestion.id] || ''}
+            value={answers[currentQuestion.id] || ""}
             onChange={(e) => handleAnswer(e.target.value)}
             placeholder={currentQuestion.placeholder}
             className="min-h-32 bg-black/20 border-white/20 text-white placeholder:text-white/50 resize-none"
@@ -188,7 +222,8 @@ export default function Assessment() {
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-10"
         style={{
-          backgroundImage: 'url(https://images.pexels.com/photos/4098218/pexels-photo-4098218.jpeg)'
+          backgroundImage:
+            "url(https://images.pexels.com/photos/4098218/pexels-photo-4098218.jpeg)",
         }}
       />
       {/* Navigation */}
@@ -221,26 +256,37 @@ export default function Assessment() {
           <Card className="dark-card mb-8">
             <CardHeader>
               <div className="flex items-center gap-3 mb-4">
-                {currentQuestion.type === 'mood-emoji' && <Heart className="w-6 h-6 text-happy" />}
-                {currentQuestion.type === 'radio' && <Zap className="w-6 h-6 text-calm" />}
-                {currentQuestion.type === 'textarea' && <Brain className="w-6 h-6 text-primary" />}
-                <Badge variant="secondary" className="bg-primary/20 text-primary border-primary/30">
-                  {currentQuestion.type === 'mood-emoji' ? 'Mood Check' : 
-                   currentQuestion.type === 'textarea' ? 'Tell Your Story' : 'Quick Question'}
+                {currentQuestion.type === "mood-emoji" && (
+                  <Heart className="w-6 h-6 text-happy" />
+                )}
+                {currentQuestion.type === "radio" && (
+                  <Zap className="w-6 h-6 text-calm" />
+                )}
+                {currentQuestion.type === "textarea" && (
+                  <Brain className="w-6 h-6 text-primary" />
+                )}
+                <Badge
+                  variant="secondary"
+                  className="bg-primary/20 text-primary border-primary/30"
+                >
+                  {currentQuestion.type === "mood-emoji"
+                    ? "Mood Check"
+                    : currentQuestion.type === "textarea"
+                      ? "Tell Your Story"
+                      : "Quick Question"}
                 </Badge>
               </div>
               <CardTitle className="text-2xl text-white mb-2">
                 {currentQuestion.question}
               </CardTitle>
-              {currentQuestion.type === 'textarea' && (
+              {currentQuestion.type === "textarea" && (
                 <CardDescription className="text-white/70">
-                  Take your time to share what's on your mind. The more you tell us, the better we can help.
+                  Take your time to share what's on your mind. The more you tell
+                  us, the better we can help.
                 </CardDescription>
               )}
             </CardHeader>
-            <CardContent>
-              {renderQuestionInput()}
-            </CardContent>
+            <CardContent>{renderQuestionInput()}</CardContent>
           </Card>
 
           {/* Navigation Buttons */}
@@ -285,7 +331,10 @@ export default function Assessment() {
 
           {/* Help Text */}
           <div className="mt-8 text-center text-white/60 text-sm">
-            <p>Your responses help us understand you better. All information is kept private and secure.</p>
+            <p>
+              Your responses help us understand you better. All information is
+              kept private and secure.
+            </p>
           </div>
         </div>
       </div>

@@ -16,12 +16,14 @@ A beautiful, modern web application that uses AI to analyze your mood and provid
 ## 🚀 Quick Start
 
 ### 1. Clone the Repository
+
 ```bash
 git clone https://github.com/AK050744/mood_enhancer_.git
 cd mood_enhancer_
 ```
 
 ### 2. Install Dependencies
+
 ```bash
 # Install pnpm if you don't have it
 npm install -g pnpm
@@ -33,20 +35,24 @@ pnpm install
 ### 3. Set Up API Keys
 
 #### Get OpenAI API Key (Required)
+
 1. Visit [OpenAI Platform](https://platform.openai.com/api-keys)
 2. Create an account or sign in
 3. Generate a new API key
 4. Copy your API key
 
 #### Get Unsplash API Key (Optional - for better images)
+
 1. Visit [Unsplash Developers](https://unsplash.com/developers)
 2. Create an account and register an application
 3. Copy your Access Key
 
 #### Configure Environment Variables
+
 You can set environment variables in two ways:
 
 **Option A: Using DevServerControl (Recommended for secrets)**
+
 ```bash
 # Start the dev server first
 pnpm dev
@@ -57,12 +63,14 @@ pnpm dev
 ```
 
 **Option B: Create .env file**
+
 ```bash
 cp .env.example .env
 # Edit .env and add your actual API keys
 ```
 
 ### 4. Run the Application
+
 ```bash
 pnpm dev
 ```
@@ -91,14 +99,16 @@ mood_enhancer_/
 ## 🎨 Design Features
 
 ### Color Scheme
+
 - **Purple to Cyan Gradient**: Main brand colors
-- **Mood-specific Colors**: 
+- **Mood-specific Colors**:
   - Happy: Yellow (`#FFEB3B`)
   - Calm: Cyan (`#00BCD4`)
   - Sad: Blue (`#2196F3`)
   - Angry: Red (`#F44336`)
 
 ### UI Components
+
 - **Glass-morphism**: Translucent cards with backdrop blur
 - **Smooth Animations**: Hover effects and transitions
 - **Responsive Grid**: Adapts to all screen sizes
@@ -107,12 +117,14 @@ mood_enhancer_/
 ## 🤖 AI Integration
 
 ### OpenAI Integration
+
 - Uses GPT-3.5-turbo for content recommendations
 - Analyzes mood, energy level, preferences, and personal story
 - Generates contextual reasons for each recommendation
 - Fallback to mock data if API fails
 
 ### Unsplash Integration
+
 - Fetches real, beautiful images for each recommendation
 - Dynamic search based on content type and title
 - Automatic fallback to placeholder images
@@ -121,24 +133,28 @@ mood_enhancer_/
 ## 📊 Features Breakdown
 
 ### 1. Homepage (`/`)
+
 - Gradient hero section with call-to-action
 - Content category overview with background images
 - Feature explanations and statistics
 - Modern navigation with glass-morphism
 
 ### 2. Mood Assessment (`/assess`)
+
 - Multi-step questionnaire with progress tracking
 - Emoji-based mood selection
 - Text areas for personal stories
 - Smooth navigation between questions
 
 ### 3. AI Recommendations (`/recommendations`)
+
 - Tabbed interface for 5 content categories
 - Beautiful image cards for each recommendation
 - Thumbs up/down feedback system
 - Reasons why each item was recommended
 
 ### 4. Dashboard (`/dashboard`)
+
 - Mood history visualization
 - Weekly/monthly statistics
 - Content usage analytics
@@ -167,6 +183,7 @@ pnpm typecheck  # TypeScript validation
 ## 🎯 Hackathon Ready
 
 This project is perfect for hackathons because it:
+
 - ✅ **Solves a real problem**: Mental health and mood enhancement
 - ✅ **Uses cutting-edge AI**: OpenAI integration for smart recommendations
 - ✅ **Beautiful UI/UX**: Professional, modern design
@@ -177,9 +194,11 @@ This project is perfect for hackathons because it:
 ## 📝 API Endpoints
 
 ### POST `/api/recommendations`
+
 Generate AI-powered content recommendations based on mood assessment.
 
 **Request Body:**
+
 ```json
 {
   "mood": "happy",
@@ -192,6 +211,7 @@ Generate AI-powered content recommendations based on mood assessment.
 ```
 
 **Response:**
+
 ```json
 {
   "mood": "happy",
@@ -208,6 +228,7 @@ Generate AI-powered content recommendations based on mood assessment.
 ## 🚀 Deployment
 
 The app is ready for deployment on:
+
 - **Netlify**: Static site hosting
 - **Vercel**: Full-stack deployment
 - **Railway**: Backend hosting
@@ -237,4 +258,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **Built with ❤️ for better mental health and emotional well-being**
 
-*Transform your day with AI-powered mood enhancement!* 🌈
+_Transform your day with AI-powered mood enhancement!_ 🌈

@@ -76,36 +76,41 @@ export default function Recommendations() {
 
     try {
       const answers = JSON.parse(assessmentData);
-      console.log('Making API call with data:', answers);
+      console.log("Making API call with data:", answers);
 
       // Call real backend API for AI-powered recommendations
-      const response = await fetch('/api/recommendations', {
-        method: 'POST',
+      const response = await fetch("/api/recommendations", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(answers),
       });
 
-      console.log('API Response status:', response.status);
-      console.log('API Response headers:', Object.fromEntries(response.headers.entries()));
+      console.log("API Response status:", response.status);
+      console.log(
+        "API Response headers:",
+        Object.fromEntries(response.headers.entries()),
+      );
 
       if (!response.ok) {
         const errorText = await response.text();
-        console.error('API Error Response:', errorText);
-        throw new Error(`HTTP error! status: ${response.status} - ${errorText}`);
+        console.error("API Error Response:", errorText);
+        throw new Error(
+          `HTTP error! status: ${response.status} - ${errorText}`,
+        );
       }
 
       const aiRecommendations: RecommendationData = await response.json();
-      console.log('Received recommendations:', aiRecommendations);
+      console.log("Received recommendations:", aiRecommendations);
       setRecommendations(aiRecommendations);
-
     } catch (error) {
-      console.error('Error loading recommendations:', error);
+      console.error("Error loading recommendations:", error);
 
       // Fallback to mock data if API fails
       const answers = JSON.parse(assessmentData);
-      const mockRecommendations: RecommendationData = generateMockRecommendations(answers.mood || 'happy');
+      const mockRecommendations: RecommendationData =
+        generateMockRecommendations(answers.mood || "happy");
       setRecommendations(mockRecommendations);
     } finally {
       setIsLoading(false);
@@ -412,9 +417,7 @@ export default function Recommendations() {
           <h2 className="text-2xl font-bold text-white mb-4">
             No Assessment Found
           </h2>
-          <p className="text-white/70 mb-6">
-            Please check your mood first.
-          </p>
+          <p className="text-white/70 mb-6">Please check your mood first.</p>
           <Link to="/assess">
             <Button className="bg-white text-primary hover:bg-white/90">
               Check Your Mood
@@ -428,84 +431,90 @@ export default function Recommendations() {
   const renderRecommendationCard = (item: Recommendation, category: string) => (
     <div key={item.id}>
       <Card className="dark-card hover:bg-white/10 transition-all duration-300 overflow-hidden">
-      {/* Recommendation Image */}
-      <div className="relative h-48 w-full overflow-hidden">
-        <img
-          src={item.imageUrl}
-          alt={item.title}
-          className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
-          onError={(e) => {
-            e.currentTarget.src = '/placeholder.svg';
-          }}
-        />
-        <div className="absolute left-0 right-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent" style={{top: '26px'}} />
-        <Badge className="absolute top-3 right-3 bg-primary/90 text-white border-none">
-          <Star className="w-3 h-3 mr-1" />
-        </Badge>
-      </div>
-      <CardHeader>
-        <div className="flex justify-between items-start">
-          <div className="flex-1">
-            <CardTitle className="text-white mb-2">
-              {item.title}
-            </CardTitle>
-            <CardDescription className="text-white/70 mb-2">
-              {item.description}
-            </CardDescription>
-            <div className="flex gap-2 mb-2">
-              <Badge className="bg-white/10 text-white border-white/20 text-xs">
-                {item.genre}
-              </Badge>
-              {item.duration && (
+        {/* Recommendation Image */}
+        <div className="relative h-48 w-full overflow-hidden">
+          <img
+            src={item.imageUrl}
+            alt={item.title}
+            className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+            onError={(e) => {
+              e.currentTarget.src = "/placeholder.svg";
+            }}
+          />
+          <div
+            className="absolute left-0 right-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent"
+            style={{ top: "26px" }}
+          />
+          <Badge className="absolute top-3 right-3 bg-primary/90 text-white border-none">
+            <Star className="w-3 h-3 mr-1" />
+          </Badge>
+        </div>
+        <CardHeader>
+          <div className="flex justify-between items-start">
+            <div className="flex-1">
+              <CardTitle className="text-white mb-2">{item.title}</CardTitle>
+              <CardDescription className="text-white/70 mb-2">
+                {item.description}
+              </CardDescription>
+              <div className="flex gap-2 mb-2">
                 <Badge className="bg-white/10 text-white border-white/20 text-xs">
-                  <Clock className="w-3 h-3 mr-1" />
-                  {item.duration}
+                  {item.genre}
                 </Badge>
-              )}
+                {item.duration && (
+                  <Badge className="bg-white/10 text-white border-white/20 text-xs">
+                    <Clock className="w-3 h-3 mr-1" />
+                    {item.duration}
+                  </Badge>
+                )}
+              </div>
+              <p className="text-sm text-primary font-medium flex items-center gap-1">
+                <Sparkles className="w-4 h-4" />
+                {item.reason}
+              </p>
             </div>
-            <p className="text-sm text-primary font-medium flex items-center gap-1">
-              <Sparkles className="w-4 h-4" />
-              {item.reason}
-            </p>
           </div>
-        </div>
-      </CardHeader>
-      <CardContent>
-        <div className="flex justify-between items-center">
-          <div className="flex gap-2">
+        </CardHeader>
+        <CardContent>
+          <div className="flex justify-between items-center">
+            <div className="flex gap-2">
+              <Button
+                size="sm"
+                variant={feedback[item.id] === "like" ? "default" : "outline"}
+                onClick={() => handleFeedback(item.id, "like")}
+                className={
+                  feedback[item.id] === "like"
+                    ? "bg-green-600 hover:bg-green-700"
+                    : "border-white/30 text-white hover:bg-white/10"
+                }
+              >
+                <ThumbsUp className="w-4 h-4" />
+              </Button>
+              <Button
+                size="sm"
+                variant={
+                  feedback[item.id] === "dislike" ? "default" : "outline"
+                }
+                onClick={() => handleFeedback(item.id, "dislike")}
+                className={
+                  feedback[item.id] === "dislike"
+                    ? "bg-red-600 hover:bg-red-700"
+                    : "border-white/30 text-white hover:bg-white/10"
+                }
+              >
+                <ThumbsDown className="w-4 h-4" />
+              </Button>
+            </div>
             <Button
               size="sm"
-              variant={feedback[item.id] === "like" ? "default" : "outline"}
-              onClick={() => handleFeedback(item.id, "like")}
-              className={
-                feedback[item.id] === "like"
-                  ? "bg-green-600 hover:bg-green-700"
-                  : "border-white/30 text-white hover:bg-white/10"
-              }
+              className="bg-white text-primary hover:bg-white/90"
             >
-              <ThumbsUp className="w-4 h-4" />
-            </Button>
-            <Button
-              size="sm"
-              variant={feedback[item.id] === "dislike" ? "default" : "outline"}
-              onClick={() => handleFeedback(item.id, "dislike")}
-              className={
-                feedback[item.id] === "dislike"
-                  ? "bg-red-600 hover:bg-red-700"
-                  : "border-white/30 text-white hover:bg-white/10"
-              }
-            >
-              <ThumbsDown className="w-4 h-4" />
+              <ExternalLink className="w-4 h-4 mr-1" />
+              Open
             </Button>
           </div>
-          <Button size="sm" className="bg-white text-primary hover:bg-white/90">
-            <ExternalLink className="w-4 h-4 mr-1" />
-            Open
-          </Button>
-        </div>
-      </CardContent>
-    </Card>
-    <span className="text-white text-sm">{item.rating}</span>
+        </CardContent>
+      </Card>
+      <span className="text-white text-sm">{item.rating}</span>
     </div>
   );
 
@@ -517,9 +526,7 @@ export default function Recommendations() {
           <div className="flex items-center justify-between">
             <Link to="/" className="flex items-center space-x-2">
               <Brain className="h-8 w-8 text-primary" />
-              <span className="text-2xl font-bold text-white">
-                Moody
-              </span>
+              <span className="text-2xl font-bold text-white">Moody</span>
             </Link>
             <div className="flex items-center space-x-4">
               {recommendations && (
