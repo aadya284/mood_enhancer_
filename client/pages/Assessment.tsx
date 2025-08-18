@@ -178,7 +178,7 @@ export default function Assessment() {
     switch (currentQuestion.type) {
       case 'mood-emoji':
         return (
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
             {currentQuestion.options?.map((mood) => {
               const moodData = moodEmojis[mood as keyof typeof moodEmojis];
               return (
