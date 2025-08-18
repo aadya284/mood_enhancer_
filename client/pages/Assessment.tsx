@@ -34,85 +34,37 @@ const questions: Question[] = [
     id: "mood",
     question: "How are you feeling right now?",
     type: "mood-emoji",
-    options: ["happy", "sad", "angry", "calm", "stressed", "excited", "confused", "lonely", "grateful", "anxious"]
+    options: ["happy", "sad", "angry", "calm", "stressed", "excited"]
+  },
+  {
+    id: "day",
+    question: "How was your day overall?",
+    type: "radio",
+    options: ["Amazing", "Good", "Okay", "Difficult", "Terrible"]
   },
   {
     id: "energy",
     question: "What's your current energy level?",
     type: "radio",
-    options: ["Very High - Ready to conquer the world!", "High - Feeling energetic", "Medium - Balanced and steady", "Low - Feeling drained", "Very Low - Exhausted"]
-  },
-  {
-    id: "social",
-    question: "How do you feel about social interaction right now?",
-    type: "radio",
-    options: ["Want to connect with others", "Prefer some company", "Need alone time", "Want to be completely isolated", "Feeling social anxiety"]
-  },
-  {
-    id: "stress",
-    question: "What's your stress level today?",
-    type: "radio",
-    options: ["No stress at all", "Mild pressure", "Moderate stress", "High stress", "Overwhelmed"]
-  },
-  {
-    id: "motivation",
-    question: "How motivated do you feel right now?",
-    type: "radio",
-    options: ["Super motivated", "Ready to take on tasks", "Neutral", "Low motivation", "Completely unmotivated"]
-  },
-  {
-    id: "sleep",
-    question: "How did you sleep last night?",
-    type: "radio",
-    options: ["Amazing - 8+ hours", "Good - 6-8 hours", "Okay - 5-6 hours", "Poor - 3-5 hours", "Terrible - Less than 3 hours"]
-  },
-  {
-    id: "weather_impact",
-    question: "How is the weather affecting your mood?",
-    type: "radio",
-    options: ["Loving the weather", "Weather is perfect", "Weather is okay", "Weather is bothering me", "Weather is really affecting me negatively"]
-  },
-  {
-    id: "story",
-    question: "Tell us what's happening in your life right now. What's on your mind?",
-    type: "textarea",
-    placeholder: "Share your thoughts, recent experiences, challenges, or anything that's affecting your mood today..."
-  },
-  {
-    id: "goals",
-    question: "What do you hope to achieve or feel after this session?",
-    type: "textarea",
-    placeholder: "Describe what would make you feel better or what you're looking to get out of this experience..."
+    options: ["Very High", "High", "Medium", "Low", "Very Low"]
   },
   {
     id: "preferences",
     question: "What type of content usually helps you feel better?",
     type: "radio",
-    options: ["Uplifting movies & shows", "Calming music & sounds", "Inspiring podcasts & talks", "Engaging games & activities", "Educational audiobooks & content", "Comedy & humor"]
-  },
-  {
-    id: "genre_mood",
-    question: "What genre matches your current vibe?",
-    type: "radio",
-    options: ["Action & Adventure", "Romance & Drama", "Comedy & Light-hearted", "Mystery & Thriller", "Sci-Fi & Fantasy", "Documentary & Educational"]
-  },
-  {
-    id: "time_available",
-    question: "How much time do you have for content right now?",
-    type: "radio",
-    options: ["Just a few minutes (5-15 min)", "Half an hour (15-30 min)", "About an hour (30-60 min)", "Couple of hours (1-2 hours)", "All day - no rush"]
+    options: ["Uplifting movies", "Calming music", "Inspiring podcasts", "Engaging games", "Educational audiobooks", "Comedy content"]
   },
   {
     id: "activity",
     question: "What would you like to do right now?",
     type: "radio",
-    options: ["Watch something engaging", "Listen to music or audio", "Play interactive games", "Learn something new", "Relax and unwind", "Get motivated and inspired"]
+    options: ["Watch something", "Listen to music", "Play games", "Learn something new", "Relax and unwind"]
   },
   {
-    id: "mood_goal",
-    question: "What mood are you hoping to achieve?",
-    type: "radio",
-    options: ["More happiness & joy", "Peace & calmness", "Energy & motivation", "Comfort & healing", "Inspiration & creativity", "Just distraction from current feelings"]
+    id: "story",
+    question: "Tell us about what happened today. What's on your mind?",
+    type: "textarea",
+    placeholder: "Share your thoughts, experiences, or anything that's affecting your mood..."
   }
 ];
 
