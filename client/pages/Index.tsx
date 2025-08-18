@@ -77,7 +77,7 @@ export default function Index() {
             <Link to="/assess">
               <Button size="lg" className="bg-white text-primary hover:bg-white/90 text-lg px-8 py-4">
                 <Brain className="w-5 h-5 mr-2" />
-                Start Mood Assessment
+                Check Your Mood
                 <ArrowRight className="w-5 h-5 ml-2" />
               </Button>
             </Link>
