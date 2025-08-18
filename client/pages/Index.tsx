@@ -62,9 +62,9 @@ export default function Index() {
           </Badge>
           
           <h1 className="text-6xl font-bold mb-6 bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">
-            Transform Your Day with 
+            Transform Your Mood with
             <span className="block text-transparent bg-gradient-to-r from-happy to-calm bg-clip-text">
-              Personalized Recommendations
+              Moody
             </span>
           </h1>
           
