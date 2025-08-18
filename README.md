@@ -2,7 +2,7 @@
 
 A beautiful, modern web application that uses AI to analyze your mood and provide personalized recommendations for movies, music, podcasts, audiobooks, and games to enhance your emotional well-being.
 
-![MoodEnhancer Preview](https://images.pexels.com/photos/3862601/pexels-photo-3862601.jpeg?w=800&h=400&fit=crop)
+![Moody Preview](https://images.pexels.com/photos/3862601/pexels-photo-3862601.jpeg?w=800&h=400&fit=crop)
 
 ## ✨ Features
 
