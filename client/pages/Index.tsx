@@ -159,7 +159,7 @@ export default function Index() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-white mb-4">
-              How MoodEnhancer Works
+              How Moody Works
             </h2>
             <p className="text-xl text-white/80 max-w-2xl mx-auto">
               Our AI analyzes your responses to provide personalized content recommendations that match your current emotional state.
