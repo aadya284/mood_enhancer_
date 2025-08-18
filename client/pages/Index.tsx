@@ -243,10 +243,10 @@ export default function Index() {
       <footer className="border-t border-white/10 bg-black/30 backdrop-blur-sm py-8">
         <div className="container mx-auto px-4 text-center text-white/60">
           <div className="flex items-center justify-center space-x-2 mb-4">
-            <Brain className="h-6 w-6 text-primary" />
-            <span className="text-lg font-semibold text-white">MoodEnhancer</span>
-          </div>
-          <p>&copy; 2024 MoodEnhancer. Enhancing well-being through personalized content.</p>
+          <Brain className="h-6 w-6 text-primary" />
+          <span className="text-lg font-semibold text-white">Moody</span>
+        </div>
+        <p>&copy; 2024 Moody. Boosting your mood through personalized content.</p>
         </div>
       </footer>
     </div>
