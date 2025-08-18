@@ -197,7 +197,7 @@ export default function Assessment() {
           <div className="flex items-center justify-between">
             <Link to="/" className="flex items-center space-x-2">
               <Brain className="h-8 w-8 text-primary" />
-              <span className="text-2xl font-bold text-white">MoodEnhancer</span>
+              <span className="text-2xl font-bold text-white">Moody</span>
             </Link>
             <Badge className="bg-white/10 text-white border-white/20">
               Question {currentQuestionIndex + 1} of {questions.length}
