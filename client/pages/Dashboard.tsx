@@ -375,7 +375,7 @@ export default function Dashboard() {
                 <Link to="/assess">
                   <Button className="bg-white text-primary hover:bg-white/90">
                     <Plus className="w-4 h-4 mr-2" />
-                    Start Assessment
+                    Check Your Mood
                   </Button>
                 </Link>
               </div>
