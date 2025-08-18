@@ -34,7 +34,7 @@ const questions: Question[] = [
     id: "mood",
     question: "How are you feeling right now?",
     type: "mood-emoji",
-    options: ["happy", "sad", "angry", "calm", "stressed", "excited"]
+    options: ["happy", "sad", "angry", "calm", "stressed", "excited", "confused", "lonely", "grateful", "anxious"]
   },
   {
     id: "energy",
