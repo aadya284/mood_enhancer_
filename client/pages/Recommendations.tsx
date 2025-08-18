@@ -417,7 +417,7 @@ export default function Recommendations() {
           </p>
           <Link to="/assess">
             <Button className="bg-white text-primary hover:bg-white/90">
-              Start Assessment
+              Check Your Mood
             </Button>
           </Link>
         </Card>
