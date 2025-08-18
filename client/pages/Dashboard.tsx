@@ -371,7 +371,7 @@ export default function Dashboard() {
               <div className="text-center py-8">
                 <Brain className="w-16 h-16 text-white/30 mx-auto mb-4" />
                 <h3 className="text-white text-lg font-semibold mb-2">No mood data yet</h3>
-                <p className="text-white/70 mb-4">Take your first assessment to start tracking your mood journey</p>
+                <p className="text-white/70 mb-4">Check your mood to start tracking your emotional journey</p>
                 <Link to="/assess">
                   <Button className="bg-white text-primary hover:bg-white/90">
                     <Plus className="w-4 h-4 mr-2" />
