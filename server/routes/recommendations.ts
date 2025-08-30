@@ -165,7 +165,9 @@ async function getAIRecommendations(assessment: MoodAssessment): Promise<Recomme
   const randomSeed = Math.floor(Math.random() * 1000);
 
   const prompt = `
-Based on this person's mood assessment, provide 2 DIVERSE and DIFFERENT personalized recommendations for each category. Use variety and avoid repeating the same popular titles.
+You are a mood-based content curator. Return high-quality, diverse picks.
+Provide 2 varied recommendations per category that fit the user's mood and energy.
+Include a thoughtful reason for each.
 
 Mood Assessment:
 - Current mood: ${assessment.mood}
@@ -176,70 +178,21 @@ Mood Assessment:
 - Desired activity: ${assessment.activity}
 - Random seed: ${randomSeed}
 
-IMPORTANT:
-- Provide DIFFERENT recommendations each time, not the same popular ones
-- Include both mainstream AND lesser-known quality content
-- For images, provide SPECIFIC search terms that will find actual movie posters, album covers, etc.
+QUALITY RULES:
+- Mix mainstream hits with lesser-known gems; avoid repeating the same famous titles.
+- Prefer recent releases when relevant, but include timeless picks.
+- Balance genres and lengths; offer approachable options.
+- Be factual; only include real content that exists.
+- For images, give SPECIFIC search terms to find posters/covers.
 
-Please provide recommendations in this exact JSON format:
+Return ONLY valid JSON in this exact shape:
 {
-  "movies": [
-    {
-      "title": "Movie Title",
-      "description": "Brief description",
-      "genre": "Genre",
-      "duration": "1h 30m",
-      "rating": 4.5,
-      "reason": "Why this matches their mood",
-      "searchQuery": "Movie Title 2023 movie poster"
-    }
-  ],
-  "music": [
-    {
-      "title": "Song/Album/Playlist Title",
-      "description": "Brief description",
-      "genre": "Genre",
-      "duration": "3:45",
-      "rating": 4.8,
-      "reason": "Why this matches their mood",
-      "searchQuery": "Artist Name Album Title album cover"
-    }
-  ],
-  "podcasts": [
-    {
-      "title": "Podcast Title",
-      "description": "Brief description",
-      "genre": "Category",
-      "duration": "45m",
-      "rating": 4.7,
-      "reason": "Why this matches their mood",
-      "searchQuery": "Podcast Title podcast logo cover"
-    }
-  ],
-  "audiobooks": [
-    {
-      "title": "Book Title",
-      "description": "Brief description",
-      "genre": "Genre",
-      "duration": "8h 30m",
-      "rating": 4.6,
-      "reason": "Why this matches their mood",
-      "searchQuery": "Book Title Author book cover"
-    }
-  ],
-  "games": [
-    {
-      "title": "Game Title",
-      "description": "Brief description",
-      "genre": "Genre",
-      "rating": 4.9,
-      "reason": "Why this matches their mood",
-      "searchQuery": "Game Title video game poster cover art"
-    }
-  ]
+  "movies": [{"title":"","description":"","genre":"","duration":"","rating":4.7,"reason":"","searchQuery":""}],
+  "music": [{"title":"","description":"","genre":"","duration":"","rating":4.7,"reason":"","searchQuery":""}],
+  "podcasts": [{"title":"","description":"","genre":"","duration":"","rating":4.7,"reason":"","searchQuery":""}],
+  "audiobooks": [{"title":"","description":"","genre":"","duration":"","rating":4.7,"reason":"","searchQuery":""}],
+  "games": [{"title":"","description":"","genre":"","rating":4.7,"reason":"","searchQuery":""}]
 }
-
-Make sure all recommendations are real, popular content that exists. Focus on content that would genuinely help improve or complement their current emotional state.
 `;
 
   try {
@@ -247,23 +200,27 @@ Make sure all recommendations are real, popular content that exists. Focus on co
       throw new Error('Missing OPENAI_API_KEY');
     }
     const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
-    const completion = await openai.chat.completions.create({
-      model: "gpt-3.5-turbo",
-      messages: [
-        {
-          role: "system",
-          content: "You are a mood-based content recommendation expert. Always respond with valid JSON only, no additional text."
-        },
-        {
-          role: "user",
-          content: prompt
-        }
-      ],
-      temperature: 0.7,
-      max_tokens: 2000,
-    });
+    const messages = [
+      { role: "system", content: "You are a mood-based content recommendation expert. Always respond with valid JSON only, no additional text." },
+      { role: "user", content: prompt },
+    ] as const;
 
-    const content = completion.choices[0]?.message?.content;
+    const models = ["gpt-4o-mini", "gpt-4o", "gpt-3.5-turbo"] as const;
+    let content: string | undefined;
+    for (const m of models) {
+      try {
+        const completion = await openai.chat.completions.create({
+          model: m,
+          messages,
+          temperature: 0.7,
+          max_tokens: 2000,
+        });
+        content = completion.choices[0]?.message?.content;
+        if (content) break;
+      } catch (_) {
+        // try next model
+      }
+    }
     if (!content) {
       throw new Error('No content received from OpenAI');
     }
@@ -279,6 +236,8 @@ Make sure all recommendations are real, popular content that exists. Focus on co
         (items as any[]).map(async (item, index) => {
           const imageUrl = await getUnsplashImage(item.searchQuery || item.title);
           
+          const query = encodeURIComponent(`${item.title} ${item.genre || ""}`.trim());
+          const externalUrl = `https://www.google.com/search?q=${query}`;
           return {
             id: `${category}_${index + 1}`,
             title: item.title,
@@ -288,7 +247,7 @@ Make sure all recommendations are real, popular content that exists. Focus on co
             rating: item.rating,
             reason: item.reason,
             imageUrl,
-            externalUrl: "#" // You can add real URLs later
+            externalUrl,
           };
         })
       );
