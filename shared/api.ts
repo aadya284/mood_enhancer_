@@ -10,3 +10,19 @@
 export interface DemoResponse {
   message: string;
 }
+
+export interface QuoteResponse {
+  quote: string;
+  author: string;
+}
+
+export interface MentalUpdateItem {
+  title: string;
+  link: string;
+  publishedAt: string;
+  source: string;
+}
+
+export interface MentalUpdatesResponse {
+  items: MentalUpdateItem[];
+}
