@@ -4,7 +4,6 @@ import OpenAI from "openai";
 // Simple cache to avoid repeating images in the same session
 const usedImages = new Set<string>();
 
-
 interface MoodAssessment {
   mood: string;
   day: string;
@@ -44,29 +43,41 @@ async function getUnsplashImage(query: string): Promise<string> {
       // Use diverse high-quality images from Pexels based on specific content
       const specificImages: Record<string, string> = {
         // Movies
-        'spider-man': 'https://images.pexels.com/photos/163077/mario-luigi-yoschi-figures-163077.jpeg?w=400&h=600&fit=crop',
-        'dune': 'https://images.pexels.com/photos/998641/pexels-photo-998641.jpeg?w=400&h=600&fit=crop',
-        'movie': 'https://images.pexels.com/photos/7991579/pexels-photo-7991579.jpeg?w=400&h=600&fit=crop',
+        "spider-man":
+          "https://images.pexels.com/photos/163077/mario-luigi-yoschi-figures-163077.jpeg?w=400&h=600&fit=crop",
+        dune: "https://images.pexels.com/photos/998641/pexels-photo-998641.jpeg?w=400&h=600&fit=crop",
+        movie:
+          "https://images.pexels.com/photos/7991579/pexels-photo-7991579.jpeg?w=400&h=600&fit=crop",
 
         // Music
-        'weeknd': 'https://images.pexels.com/photos/3693586/pexels-photo-3693586.jpeg?w=400&h=600&fit=crop',
-        'dua lipa': 'https://images.pexels.com/photos/3756242/pexels-photo-3756242.jpeg?w=400&h=600&fit=crop',
-        'music': 'https://images.pexels.com/photos/3764004/pexels-photo-3764004.jpeg?w=400&h=600&fit=crop',
+        weeknd:
+          "https://images.pexels.com/photos/3693586/pexels-photo-3693586.jpeg?w=400&h=600&fit=crop",
+        "dua lipa":
+          "https://images.pexels.com/photos/3756242/pexels-photo-3756242.jpeg?w=400&h=600&fit=crop",
+        music:
+          "https://images.pexels.com/photos/3764004/pexels-photo-3764004.jpeg?w=400&h=600&fit=crop",
 
         // Podcasts
-        'joe rogan': 'https://images.pexels.com/photos/7562313/pexels-photo-7562313.jpeg?w=400&h=600&fit=crop',
-        'conan': 'https://images.pexels.com/photos/6956912/pexels-photo-6956912.jpeg?w=400&h=600&fit=crop',
-        'podcast': 'https://images.pexels.com/photos/4226140/pexels-photo-4226140.jpeg?w=400&h=600&fit=crop',
+        "joe rogan":
+          "https://images.pexels.com/photos/7562313/pexels-photo-7562313.jpeg?w=400&h=600&fit=crop",
+        conan:
+          "https://images.pexels.com/photos/6956912/pexels-photo-6956912.jpeg?w=400&h=600&fit=crop",
+        podcast:
+          "https://images.pexels.com/photos/4226140/pexels-photo-4226140.jpeg?w=400&h=600&fit=crop",
 
         // Books
-        'atomic habits': 'https://images.pexels.com/photos/1029141/pexels-photo-1029141.jpeg?w=400&h=600&fit=crop',
-        'midnight library': 'https://images.pexels.com/photos/2908984/pexels-photo-2908984.jpeg?w=400&h=600&fit=crop',
-        'book': 'https://images.pexels.com/photos/159866/books-book-pages-read-literature-159866.jpeg?w=400&h=600&fit=crop',
+        "atomic habits":
+          "https://images.pexels.com/photos/1029141/pexels-photo-1029141.jpeg?w=400&h=600&fit=crop",
+        "midnight library":
+          "https://images.pexels.com/photos/2908984/pexels-photo-2908984.jpeg?w=400&h=600&fit=crop",
+        book: "https://images.pexels.com/photos/159866/books-book-pages-read-literature-159866.jpeg?w=400&h=600&fit=crop",
 
         // Games
-        'hades': 'https://images.pexels.com/photos/275033/pexels-photo-275033.jpeg?w=400&h=600&fit=crop',
-        'zelda': 'https://images.pexels.com/photos/442576/pexels-photo-442576.jpeg?w=400&h=600&fit=crop',
-        'game': 'https://images.pexels.com/photos/3165335/pexels-photo-3165335.jpeg?w=400&h=600&fit=crop'
+        hades:
+          "https://images.pexels.com/photos/275033/pexels-photo-275033.jpeg?w=400&h=600&fit=crop",
+        zelda:
+          "https://images.pexels.com/photos/442576/pexels-photo-442576.jpeg?w=400&h=600&fit=crop",
+        game: "https://images.pexels.com/photos/3165335/pexels-photo-3165335.jpeg?w=400&h=600&fit=crop",
       };
 
       // Try to find specific image based on query content
@@ -78,7 +89,7 @@ async function getUnsplashImage(query: string): Promise<string> {
       }
 
       // Fallback to category-based images
-      const categoryImages = ['movie', 'music', 'podcast', 'book', 'game'];
+      const categoryImages = ["movie", "music", "podcast", "book", "game"];
       for (const category of categoryImages) {
         if (lowerQuery.includes(category)) {
           return specificImages[category];
@@ -88,31 +99,31 @@ async function getUnsplashImage(query: string): Promise<string> {
       // Random fallback to avoid same image, ensuring uniqueness
       const randomImages = [
         // Movies
-        'https://images.pexels.com/photos/7991579/pexels-photo-7991579.jpeg?w=400&h=600&fit=crop',
-        'https://images.pexels.com/photos/33450578/pexels-photo-33450578.jpeg?w=400&h=600&fit=crop',
+        "https://images.pexels.com/photos/7991579/pexels-photo-7991579.jpeg?w=400&h=600&fit=crop",
+        "https://images.pexels.com/photos/33450578/pexels-photo-33450578.jpeg?w=400&h=600&fit=crop",
 
         // Music
-        'https://images.pexels.com/photos/3764004/pexels-photo-3764004.jpeg?w=400&h=600&fit=crop',
-        'https://images.pexels.com/photos/3693108/pexels-photo-3693108.jpeg?w=400&h=600&fit=crop',
-        'https://images.pexels.com/photos/3693586/pexels-photo-3693586.jpeg?w=400&h=600&fit=crop',
+        "https://images.pexels.com/photos/3764004/pexels-photo-3764004.jpeg?w=400&h=600&fit=crop",
+        "https://images.pexels.com/photos/3693108/pexels-photo-3693108.jpeg?w=400&h=600&fit=crop",
+        "https://images.pexels.com/photos/3693586/pexels-photo-3693586.jpeg?w=400&h=600&fit=crop",
 
         // Podcasts
-        'https://images.pexels.com/photos/6956912/pexels-photo-6956912.jpeg?w=400&h=600&fit=crop',
-        'https://images.pexels.com/photos/33456955/pexels-photo-33456955.jpeg?w=400&h=600&fit=crop',
+        "https://images.pexels.com/photos/6956912/pexels-photo-6956912.jpeg?w=400&h=600&fit=crop",
+        "https://images.pexels.com/photos/33456955/pexels-photo-33456955.jpeg?w=400&h=600&fit=crop",
 
         // Books
-        'https://images.pexels.com/photos/1029141/pexels-photo-1029141.jpeg?w=400&h=600&fit=crop',
-        'https://images.pexels.com/photos/2908984/pexels-photo-2908984.jpeg?w=400&h=600&fit=crop',
-        'https://images.pexels.com/photos/33451743/pexels-photo-33451743.jpeg?w=400&h=600&fit=crop',
+        "https://images.pexels.com/photos/1029141/pexels-photo-1029141.jpeg?w=400&h=600&fit=crop",
+        "https://images.pexels.com/photos/2908984/pexels-photo-2908984.jpeg?w=400&h=600&fit=crop",
+        "https://images.pexels.com/photos/33451743/pexels-photo-33451743.jpeg?w=400&h=600&fit=crop",
 
         // Games
-        'https://images.pexels.com/photos/275033/pexels-photo-275033.jpeg?w=400&h=600&fit=crop',
-        'https://images.pexels.com/photos/442576/pexels-photo-442576.jpeg?w=400&h=600&fit=crop',
-        'https://images.pexels.com/photos/9833533/pexels-photo-9833533.jpeg?w=400&h=600&fit=crop',
+        "https://images.pexels.com/photos/275033/pexels-photo-275033.jpeg?w=400&h=600&fit=crop",
+        "https://images.pexels.com/photos/442576/pexels-photo-442576.jpeg?w=400&h=600&fit=crop",
+        "https://images.pexels.com/photos/9833533/pexels-photo-9833533.jpeg?w=400&h=600&fit=crop",
 
         // Additional variety
-        'https://images.pexels.com/photos/163077/mario-luigi-yoschi-figures-163077.jpeg?w=400&h=600&fit=crop',
-        'https://images.pexels.com/photos/998641/pexels-photo-998641.jpeg?w=400&h=600&fit=crop'
+        "https://images.pexels.com/photos/163077/mario-luigi-yoschi-figures-163077.jpeg?w=400&h=600&fit=crop",
+        "https://images.pexels.com/photos/998641/pexels-photo-998641.jpeg?w=400&h=600&fit=crop",
       ];
 
       // Try to find an unused image
@@ -125,17 +136,18 @@ async function getUnsplashImage(query: string): Promise<string> {
 
       // If all images used, clear cache and start over
       usedImages.clear();
-      const randomImg = randomImages[Math.floor(Math.random() * randomImages.length)];
+      const randomImg =
+        randomImages[Math.floor(Math.random() * randomImages.length)];
       usedImages.add(randomImg);
       return randomImg;
     }
 
     const response = await fetch(
-      `https://api.unsplash.com/search/photos?query=${encodeURIComponent(query)}&per_page=1&orientation=portrait&client_id=${process.env.UNSPLASH_ACCESS_KEY}`
+      `https://api.unsplash.com/search/photos?query=${encodeURIComponent(query)}&per_page=1&orientation=portrait&client_id=${process.env.UNSPLASH_ACCESS_KEY}`,
     );
 
     if (!response.ok) {
-      throw new Error('Failed to fetch from Unsplash');
+      throw new Error("Failed to fetch from Unsplash");
     }
 
     const data = await response.json();
@@ -147,20 +159,24 @@ async function getUnsplashImage(query: string): Promise<string> {
     }
 
     // Fallback to high-quality Pexels images
-    const fallbackUrl = 'https://images.pexels.com/photos/7991579/pexels-photo-7991579.jpeg?w=400&h=600&fit=crop';
+    const fallbackUrl =
+      "https://images.pexels.com/photos/7991579/pexels-photo-7991579.jpeg?w=400&h=600&fit=crop";
     usedImages.add(fallbackUrl);
     return fallbackUrl;
   } catch (error) {
-    console.error('Error fetching Unsplash image:', error);
+    console.error("Error fetching Unsplash image:", error);
     // Return high-quality fallback instead of placeholder.svg
-    const fallbackUrl = 'https://images.pexels.com/photos/7991579/pexels-photo-7991579.jpeg?w=400&h=600&fit=crop';
+    const fallbackUrl =
+      "https://images.pexels.com/photos/7991579/pexels-photo-7991579.jpeg?w=400&h=600&fit=crop";
     usedImages.add(fallbackUrl);
     return fallbackUrl;
   }
 }
 
 // Function to get AI recommendations
-async function getAIRecommendations(assessment: MoodAssessment): Promise<RecommendationResponse> {
+async function getAIRecommendations(
+  assessment: MoodAssessment,
+): Promise<RecommendationResponse> {
   // Add randomness to get different recommendations each time
   const randomSeed = Math.floor(Math.random() * 1000);
 
@@ -197,11 +213,15 @@ Return ONLY valid JSON in this exact shape:
 
   try {
     if (!process.env.OPENAI_API_KEY) {
-      throw new Error('Missing OPENAI_API_KEY');
+      throw new Error("Missing OPENAI_API_KEY");
     }
     const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
     const messages = [
-      { role: "system", content: "You are a mood-based content recommendation expert. Always respond with valid JSON only, no additional text." },
+      {
+        role: "system",
+        content:
+          "You are a mood-based content recommendation expert. Always respond with valid JSON only, no additional text.",
+      },
       { role: "user", content: prompt },
     ] as const;
 
@@ -222,21 +242,25 @@ Return ONLY valid JSON in this exact shape:
       }
     }
     if (!content) {
-      throw new Error('No content received from OpenAI');
+      throw new Error("No content received from OpenAI");
     }
 
     // Parse the AI response
     const aiRecommendations = JSON.parse(content);
-    
+
     // Process each category and add images + IDs
     const processedCategories: any = {};
-    
+
     for (const [category, items] of Object.entries(aiRecommendations)) {
       processedCategories[category] = await Promise.all(
         (items as any[]).map(async (item, index) => {
-          const imageUrl = await getUnsplashImage(item.searchQuery || item.title);
-          
-          const query = encodeURIComponent(`${item.title} ${item.genre || ""}`.trim());
+          const imageUrl = await getUnsplashImage(
+            item.searchQuery || item.title,
+          );
+
+          const query = encodeURIComponent(
+            `${item.title} ${item.genre || ""}`.trim(),
+          );
           const externalUrl = `https://www.google.com/search?q=${query}`;
           return {
             id: `${category}_${index + 1}`,
@@ -249,18 +273,17 @@ Return ONLY valid JSON in this exact shape:
             imageUrl,
             externalUrl,
           };
-        })
+        }),
       );
     }
 
     return {
       mood: assessment.mood,
-      categories: processedCategories
+      categories: processedCategories,
     };
-
   } catch (error) {
-    console.error('Error getting AI recommendations:', error);
-    
+    console.error("Error getting AI recommendations:", error);
+
     // Fallback to diverse responses if AI fails
     const fallbackMovies = [
       {
@@ -271,8 +294,10 @@ Return ONLY valid JSON in this exact shape:
         duration: "1h 57m",
         rating: 4.8,
         reason: "Visually stunning and uplifting",
-        imageUrl: await getUnsplashImage("spider-man into spider-verse animated"),
-        externalUrl: "#"
+        imageUrl: await getUnsplashImage(
+          "spider-man into spider-verse animated",
+        ),
+        externalUrl: "#",
       },
       {
         id: "fallback_2",
@@ -283,8 +308,8 @@ Return ONLY valid JSON in this exact shape:
         rating: 4.7,
         reason: "Immersive and visually breathtaking",
         imageUrl: await getUnsplashImage("dune desert sci-fi"),
-        externalUrl: "#"
-      }
+        externalUrl: "#",
+      },
     ];
 
     return {
@@ -301,7 +326,7 @@ Return ONLY valid JSON in this exact shape:
             rating: 4.9,
             reason: "Energetic and mood-lifting",
             imageUrl: await getUnsplashImage("weeknd blinding lights neon"),
-            externalUrl: "#"
+            externalUrl: "#",
           },
           {
             id: "fallback_4",
@@ -312,8 +337,8 @@ Return ONLY valid JSON in this exact shape:
             rating: 4.8,
             reason: "Infectious energy and positivity",
             imageUrl: await getUnsplashImage("dua lipa disco colorful"),
-            externalUrl: "#"
-          }
+            externalUrl: "#",
+          },
         ],
         podcasts: [
           {
@@ -325,7 +350,7 @@ Return ONLY valid JSON in this exact shape:
             rating: 4.8,
             reason: "Engaging discussions to shift your focus",
             imageUrl: await getUnsplashImage("joe rogan microphone studio"),
-            externalUrl: "#"
+            externalUrl: "#",
           },
           {
             id: "fallback_6",
@@ -336,8 +361,8 @@ Return ONLY valid JSON in this exact shape:
             rating: 4.7,
             reason: "Lighthearted humor to boost mood",
             imageUrl: await getUnsplashImage("conan comedy podcast"),
-            externalUrl: "#"
-          }
+            externalUrl: "#",
+          },
         ],
         audiobooks: [
           {
@@ -349,7 +374,7 @@ Return ONLY valid JSON in this exact shape:
             rating: 4.8,
             reason: "Practical strategies for positive change",
             imageUrl: await getUnsplashImage("atomic habits self improvement"),
-            externalUrl: "#"
+            externalUrl: "#",
           },
           {
             id: "fallback_8",
@@ -360,8 +385,8 @@ Return ONLY valid JSON in this exact shape:
             rating: 4.6,
             reason: "Thought-provoking and uplifting story",
             imageUrl: await getUnsplashImage("midnight library books"),
-            externalUrl: "#"
-          }
+            externalUrl: "#",
+          },
         ],
         games: [
           {
@@ -372,7 +397,7 @@ Return ONLY valid JSON in this exact shape:
             rating: 4.9,
             reason: "Engaging gameplay and positive progression",
             imageUrl: await getUnsplashImage("hades mythology gaming"),
-            externalUrl: "#"
+            externalUrl: "#",
           },
           {
             id: "fallback_10",
@@ -382,10 +407,10 @@ Return ONLY valid JSON in this exact shape:
             rating: 4.8,
             reason: "Immersive exploration and discovery",
             imageUrl: await getUnsplashImage("zelda adventure fantasy"),
-            externalUrl: "#"
-          }
-        ]
-      }
+            externalUrl: "#",
+          },
+        ],
+      },
     };
   }
 }
@@ -394,31 +419,32 @@ export const handleRecommendations: RequestHandler = async (req, res) => {
   try {
     // Validate API keys (non-fatal in dev; fall back when missing)
     if (!process.env.OPENAI_API_KEY) {
-      console.warn('OpenAI API key not configured. Using fallback recommendations.');
+      console.warn(
+        "OpenAI API key not configured. Using fallback recommendations.",
+      );
     }
 
     if (!process.env.UNSPLASH_ACCESS_KEY) {
-      console.warn('Unsplash API key not found. Using placeholder images.');
+      console.warn("Unsplash API key not found. Using placeholder images.");
     }
 
     const assessment: MoodAssessment = req.body;
-    
+
     // Validate request body
     if (!assessment || !assessment.mood) {
-      return res.status(400).json({ 
-        error: 'Invalid request. Mood assessment data is required.' 
+      return res.status(400).json({
+        error: "Invalid request. Mood assessment data is required.",
       });
     }
 
     // Get AI-powered recommendations
     const recommendations = await getAIRecommendations(assessment);
-    
+
     res.json(recommendations);
-    
   } catch (error) {
-    console.error('Error in recommendations endpoint:', error);
-    res.status(500).json({ 
-      error: 'Failed to generate recommendations. Please try again.' 
+    console.error("Error in recommendations endpoint:", error);
+    res.status(500).json({
+      error: "Failed to generate recommendations. Please try again.",
     });
   }
 };

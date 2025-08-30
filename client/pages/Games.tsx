@@ -1,6 +1,12 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { ArrowLeft, Gamepad2, Heart, TimerReset } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -50,20 +56,22 @@ function BreathingGame() {
                 phase === "inhale"
                   ? "border-emerald-500"
                   : phase === "hold"
-                  ? "border-blue-500"
-                  : "border-rose-500"
+                    ? "border-blue-500"
+                    : "border-rose-500"
               }`}
               style={{
                 transform:
                   phase === "inhale"
                     ? "scale(1.1)"
                     : phase === "hold"
-                    ? "scale(1.0)"
-                    : "scale(0.9)",
+                      ? "scale(1.0)"
+                      : "scale(0.9)",
               }}
             />
             <div className="absolute inset-0 grid place-items-center">
-              <div className="text-xl font-semibold text-black capitalize">{phase}</div>
+              <div className="text-xl font-semibold text-black capitalize">
+                {phase}
+              </div>
             </div>
           </div>
           <Button
@@ -79,7 +87,9 @@ function BreathingGame() {
 }
 
 function ReactionGame() {
-  const [state, setState] = useState<"idle" | "waiting" | "go" | "result">("idle");
+  const [state, setState] = useState<"idle" | "waiting" | "go" | "result">(
+    "idle",
+  );
   const [message, setMessage] = useState("Click Start and wait for green");
   const [color, setColor] = useState("bg-black/10");
   const [startTime, setStartTime] = useState<number | null>(null);
@@ -125,7 +135,8 @@ function ReactionGame() {
       setState("result");
       setColor("bg-black/10");
       const prev = localStorage.getItem("reaction.best");
-      if (!prev || t < Number(prev)) localStorage.setItem("reaction.best", String(Math.round(t)));
+      if (!prev || t < Number(prev))
+        localStorage.setItem("reaction.best", String(Math.round(t)));
       return;
     }
     if (state === "result") {
@@ -155,7 +166,9 @@ function ReactionGame() {
             onKeyDown={(e) => e.key === "Enter" && handleClick()}
             className={`h-40 w-full max-w-sm rounded-md border border-black/10 ${color} grid place-items-center cursor-pointer select-none`}
           >
-            <span className="text-lg font-medium text-white drop-shadow">{message}</span>
+            <span className="text-lg font-medium text-white drop-shadow">
+              {message}
+            </span>
           </div>
           <div className="text-center text-black/80">
             <div className="text-sm">Current</div>
@@ -163,11 +176,20 @@ function ReactionGame() {
               {time ? `${Math.round(time)} ms` : "—"}
             </div>
             <div className="mt-2 text-sm">Best</div>
-            <div className="text-xl font-semibold">{best ? `${best} ms` : "—"}</div>
+            <div className="text-xl font-semibold">
+              {best ? `${best} ms` : "—"}
+            </div>
           </div>
           <div className="flex gap-3">
-            <Button className="bg-black text-white hover:bg-black/90" onClick={handleClick}>
-              {state === "idle" || state === "result" ? "Start" : state === "waiting" ? "Too soon?" : "Stop"}
+            <Button
+              className="bg-black text-white hover:bg-black/90"
+              onClick={handleClick}
+            >
+              {state === "idle" || state === "result"
+                ? "Start"
+                : state === "waiting"
+                  ? "Too soon?"
+                  : "Stop"}
             </Button>
             <Button
               variant="outline"

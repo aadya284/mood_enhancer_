@@ -14,14 +14,23 @@ function decodeHtml(s: string) {
 }
 
 function parseRSS(xml: string) {
-  const items: { title: string; link: string; pubDate: string; source: string }[] = [];
+  const items: {
+    title: string;
+    link: string;
+    pubDate: string;
+    source: string;
+  }[] = [];
   const itemBlocks = xml.split(/<item>/g).slice(1);
   for (const raw of itemBlocks) {
     const block = raw.split(/<\/item>/)[0];
     const titleMatch = block.match(/<title>([\s\S]*?)<\/title>/i);
     const linkMatch = block.match(/<link>([\s\S]*?)<\/link>/i);
-    const dateMatch = block.match(/<pubDate>([\s\S]*?)<\/pubDate>/i) || block.match(/<updated>([\s\S]*?)<\/updated>/i);
-    const sourceMatch = block.match(/<source[^>]*>([\s\S]*?)<\/source>/i) || block.match(/<dc:creator[^>]*>([\s\S]*?)<\/dc:creator>/i);
+    const dateMatch =
+      block.match(/<pubDate>([\s\S]*?)<\/pubDate>/i) ||
+      block.match(/<updated>([\s\S]*?)<\/updated>/i);
+    const sourceMatch =
+      block.match(/<source[^>]*>([\s\S]*?)<\/source>/i) ||
+      block.match(/<dc:creator[^>]*>([\s\S]*?)<\/dc:creator>/i);
     const title = decodeHtml(stripCDATA(titleMatch?.[1] || ""));
     const link = decodeHtml(stripCDATA(linkMatch?.[1] || ""));
     const pubDate = decodeHtml(stripCDATA(dateMatch?.[1] || ""));
@@ -79,11 +88,17 @@ export const handleDailyQuote: RequestHandler = async (_req, res) => {
   } catch {}
   // Fallback to deterministic daily quote from local list
   const quotes = [
-    { q: "Keep going. Everything you need will come to you at the perfect time.", a: "Unknown" },
+    {
+      q: "Keep going. Everything you need will come to you at the perfect time.",
+      a: "Unknown",
+    },
     { q: "You are stronger than you think.", a: "Unknown" },
     { q: "Small steps every day.", a: "Unknown" },
     { q: "This too shall pass.", a: "Persian Proverb" },
-    { q: "Start where you are. Use what you have. Do what you can.", a: "Arthur Ashe" },
+    {
+      q: "Start where you are. Use what you have. Do what you can.",
+      a: "Arthur Ashe",
+    },
     { q: "One day at a time.", a: "Unknown" },
     { q: "Be kind to your mind.", a: "Unknown" },
   ];

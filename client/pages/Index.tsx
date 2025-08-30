@@ -27,16 +27,30 @@ import {
   Activity,
 } from "lucide-react";
 
-interface QuoteResponse { quote: string; author: string }
-interface MentalItem { title: string; link: string; publishedAt: string; source: string }
+interface QuoteResponse {
+  quote: string;
+  author: string;
+}
+interface MentalItem {
+  title: string;
+  link: string;
+  publishedAt: string;
+  source: string;
+}
 
 export default function Index() {
   const [quote, setQuote] = useState<QuoteResponse | null>(null);
   const [updates, setUpdates] = useState<MentalItem[]>([]);
 
   useEffect(() => {
-    fetch("/api/quote").then(r=>r.json()).then(setQuote).catch(()=>{});
-    fetch("/api/mental-updates").then(r=>r.json()).then((d)=>setUpdates(d.items||[])).catch(()=>{});
+    fetch("/api/quote")
+      .then((r) => r.json())
+      .then(setQuote)
+      .catch(() => {});
+    fetch("/api/mental-updates")
+      .then((r) => r.json())
+      .then((d) => setUpdates(d.items || []))
+      .catch(() => {});
   }, []);
 
   return (
@@ -51,7 +65,10 @@ export default function Index() {
             </div>
             <div className="flex items-center space-x-4">
               <Link to="/signin">
-                <Button variant="ghost" className="text-white hover:bg-white/10">
+                <Button
+                  variant="ghost"
+                  className="text-white hover:bg-white/10"
+                >
                   Sign in
                 </Button>
               </Link>
@@ -69,7 +86,10 @@ export default function Index() {
       <section className="relative py-20 text-center overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-10"
-          style={{ backgroundImage: "url(https://images.pexels.com/photos/3862601/pexels-photo-3862601.jpeg)" }}
+          style={{
+            backgroundImage:
+              "url(https://images.pexels.com/photos/3862601/pexels-photo-3862601.jpeg)",
+          }}
         />
         <div className="relative z-10 container mx-auto px-4">
           <Badge className="mb-6 bg-white text-black border-white hover:bg-white/90">
@@ -81,19 +101,26 @@ export default function Index() {
           </h1>
 
           <p className="text-xl text-white/80 max-w-3xl mx-auto mb-8 leading-relaxed">
-            Track how you feel daily, get better recommendations, and use simple tools
-            to feel better—now in a clean, high-contrast black theme.
+            Track how you feel daily, get better recommendations, and use simple
+            tools to feel better—now in a clean, high-contrast black theme.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Link to="/assess">
-              <Button size="lg" className="bg-white text-black hover:bg-white/90 text-lg px-8 py-4">
+              <Button
+                size="lg"
+                className="bg-white text-black hover:bg-white/90 text-lg px-8 py-4"
+              >
                 <Brain className="w-5 h-5 mr-2" /> Check Your Mood
                 <ArrowRight className="w-5 h-5 ml-2" />
               </Button>
             </Link>
             <Link to="/games">
-              <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 text-lg px-8 py-4">
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-white/30 text-white hover:bg-white/10 text-lg px-8 py-4"
+              >
                 <Gamepad2 className="w-5 h-5 mr-2" /> Play Mini Games
               </Button>
             </Link>
@@ -106,7 +133,9 @@ export default function Index() {
         <div className="container mx-auto px-4">
           <Card className="bg-zinc-900 border border-white/10">
             <CardContent className="p-6 text-center">
-              <div className="text-lg italic">{quote ? `“${quote.quote}”` : "Loading today’s quote..."}</div>
+              <div className="text-lg italic">
+                {quote ? `“${quote.quote}”` : "Loading today’s quote..."}
+              </div>
               <div className="mt-2 text-white/70">{quote?.author || ""}</div>
             </CardContent>
           </Card>
@@ -119,18 +148,44 @@ export default function Index() {
           <h2 className="text-4xl font-bold text-center mb-12">Features</h2>
           <div className="grid md:grid-cols-3 gap-6">
             {[
-              { icon: Activity, title: "Daily Check-ins", desc: "Log your mood daily with quick, simple prompts." },
-              { icon: TrendingUp, title: "Mood Trends", desc: "Visualize progress and patterns over time." },
-              { icon: Sparkles, title: "Better AI Recos", desc: "Smarter, diverse suggestions tailored to you." },
-              { icon: Gamepad2, title: "Mini Games", desc: "Short activities to relax and refocus." },
-              { icon: Shield, title: "Privacy First", desc: "Your data stays with you on your device." },
-              { icon: PhoneCall, title: "Crisis Support", desc: "Quick access to nearby professional help." },
+              {
+                icon: Activity,
+                title: "Daily Check-ins",
+                desc: "Log your mood daily with quick, simple prompts.",
+              },
+              {
+                icon: TrendingUp,
+                title: "Mood Trends",
+                desc: "Visualize progress and patterns over time.",
+              },
+              {
+                icon: Sparkles,
+                title: "Better AI Recos",
+                desc: "Smarter, diverse suggestions tailored to you.",
+              },
+              {
+                icon: Gamepad2,
+                title: "Mini Games",
+                desc: "Short activities to relax and refocus.",
+              },
+              {
+                icon: Shield,
+                title: "Privacy First",
+                desc: "Your data stays with you on your device.",
+              },
+              {
+                icon: PhoneCall,
+                title: "Crisis Support",
+                desc: "Quick access to nearby professional help.",
+              },
             ].map((f, i) => (
               <Card key={i} className="bg-zinc-900 border border-white/10">
                 <CardHeader>
                   <f.icon className="w-10 h-10 text-white mb-3" />
                   <CardTitle className="text-white">{f.title}</CardTitle>
-                  <CardDescription className="text-white/70">{f.desc}</CardDescription>
+                  <CardDescription className="text-white/70">
+                    {f.desc}
+                  </CardDescription>
                 </CardHeader>
               </Card>
             ))}
@@ -142,7 +197,9 @@ export default function Index() {
       <section className="py-16 bg-black">
         <div className="container mx-auto px-4">
           <div className="flex items-end justify-between mb-6">
-            <h2 className="text-4xl font-bold">Mental Health Updates Worldwide</h2>
+            <h2 className="text-4xl font-bold">
+              Mental Health Updates Worldwide
+            </h2>
             <a
               className="text-sm underline text-white/80 hover:text-white"
               href="https://news.google.com/search?q=mental+health"
@@ -153,11 +210,19 @@ export default function Index() {
             </a>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {updates.slice(0,9).map((n, i) => (
-              <Card key={i} className="bg-zinc-900 border border-white/10 h-full">
+            {updates.slice(0, 9).map((n, i) => (
+              <Card
+                key={i}
+                className="bg-zinc-900 border border-white/10 h-full"
+              >
                 <CardHeader>
                   <CardTitle className="text-white text-base leading-snug">
-                    <a href={n.link} target="_blank" rel="noreferrer" className="hover:underline">
+                    <a
+                      href={n.link}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="hover:underline"
+                    >
                       {n.title}
                     </a>
                   </CardTitle>
@@ -168,7 +233,9 @@ export default function Index() {
               </Card>
             ))}
             {updates.length === 0 && (
-              <div className="col-span-full text-white/70">No updates available right now.</div>
+              <div className="col-span-full text-white/70">
+                No updates available right now.
+              </div>
             )}
           </div>
         </div>
@@ -177,19 +244,64 @@ export default function Index() {
       {/* Content Categories */}
       <section className="py-16 bg-black">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold text-center mb-12">All Your Favorite Content</h2>
+          <h2 className="text-4xl font-bold text-center mb-12">
+            All Your Favorite Content
+          </h2>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
             {[
-              { icon: Film, label: "Movies", color: "text-red-400", description: "Curated films for every mood", bgImage: "https://images.pexels.com/photos/7991579/pexels-photo-7991579.jpeg" },
-              { icon: Music, label: "Music", color: "text-green-400", description: "Perfect playlists and songs", bgImage: "https://images.pexels.com/photos/3764004/pexels-photo-3764004.jpeg" },
-              { icon: Headphones, label: "Podcasts", color: "text-purple-400", description: "Inspiring conversations", bgImage: "https://images.pexels.com/photos/6724383/pexels-photo-6724383.jpeg" },
-              { icon: BookOpen, label: "Audiobooks", color: "text-blue-400", description: "Stories that heal", bgImage: "https://images.pexels.com/photos/3862601/pexels-photo-3862601.jpeg" },
-              { icon: Gamepad2, label: "Games", color: "text-yellow-400", description: "Interactive entertainment", bgImage: "https://images.pexels.com/photos/11790883/pexels-photo-11790883.jpeg" },
+              {
+                icon: Film,
+                label: "Movies",
+                color: "text-red-400",
+                description: "Curated films for every mood",
+                bgImage:
+                  "https://images.pexels.com/photos/7991579/pexels-photo-7991579.jpeg",
+              },
+              {
+                icon: Music,
+                label: "Music",
+                color: "text-green-400",
+                description: "Perfect playlists and songs",
+                bgImage:
+                  "https://images.pexels.com/photos/3764004/pexels-photo-3764004.jpeg",
+              },
+              {
+                icon: Headphones,
+                label: "Podcasts",
+                color: "text-purple-400",
+                description: "Inspiring conversations",
+                bgImage:
+                  "https://images.pexels.com/photos/6724383/pexels-photo-6724383.jpeg",
+              },
+              {
+                icon: BookOpen,
+                label: "Audiobooks",
+                color: "text-blue-400",
+                description: "Stories that heal",
+                bgImage:
+                  "https://images.pexels.com/photos/3862601/pexels-photo-3862601.jpeg",
+              },
+              {
+                icon: Gamepad2,
+                label: "Games",
+                color: "text-yellow-400",
+                description: "Interactive entertainment",
+                bgImage:
+                  "https://images.pexels.com/photos/11790883/pexels-photo-11790883.jpeg",
+              },
             ].map((item, index) => (
-              <Card key={index} className="relative bg-zinc-900 border border-white/10 text-center overflow-hidden group">
-                <div className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110 opacity-15" style={{ backgroundImage: `url(${item.bgImage})` }} />
+              <Card
+                key={index}
+                className="relative bg-zinc-900 border border-white/10 text-center overflow-hidden group"
+              >
+                <div
+                  className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110 opacity-15"
+                  style={{ backgroundImage: `url(${item.bgImage})` }}
+                />
                 <CardContent className="relative z-10 p-6">
-                  <item.icon className={`w-12 h-12 mx-auto mb-4 ${item.color}`} />
+                  <item.icon
+                    className={`w-12 h-12 mx-auto mb-4 ${item.color}`}
+                  />
                   <h3 className="text-lg font-semibold mb-2">{item.label}</h3>
                   <p className="text-white/70 text-sm">{item.description}</p>
                 </CardContent>
@@ -205,7 +317,8 @@ export default function Index() {
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold mb-4">How It Works</h2>
             <p className="text-xl text-white/80 max-w-2xl mx-auto">
-              Share your mood, let AI analyze your inputs, and receive personalized recommendations that support your well-being.
+              Share your mood, let AI analyze your inputs, and receive
+              personalized recommendations that support your well-being.
             </p>
           </div>
           <div className="grid md:grid-cols-3 gap-8">
@@ -213,21 +326,27 @@ export default function Index() {
               <CardHeader>
                 <Heart className="w-12 h-12 text-yellow-400 mb-4" />
                 <CardTitle>Share Your Mood</CardTitle>
-                <CardDescription className="text-white/70">Tell us about your day through a quick questionnaire.</CardDescription>
+                <CardDescription className="text-white/70">
+                  Tell us about your day through a quick questionnaire.
+                </CardDescription>
               </CardHeader>
             </Card>
             <Card className="bg-zinc-900 border border-white/10">
               <CardHeader>
                 <Zap className="w-12 h-12 text-blue-400 mb-4" />
                 <CardTitle>AI Analysis</CardTitle>
-                <CardDescription className="text-white/70">We analyze your responses to understand your needs.</CardDescription>
+                <CardDescription className="text-white/70">
+                  We analyze your responses to understand your needs.
+                </CardDescription>
               </CardHeader>
             </Card>
             <Card className="bg-zinc-900 border border-white/10">
               <CardHeader>
                 <TrendingUp className="w-12 h-12 text-green-400 mb-4" />
                 <CardTitle>Get Recommendations</CardTitle>
-                <CardDescription className="text-white/70">Receive content suggestions designed to improve your mood.</CardDescription>
+                <CardDescription className="text-white/70">
+                  Receive content suggestions designed to improve your mood.
+                </CardDescription>
               </CardHeader>
             </Card>
           </div>
@@ -242,11 +361,19 @@ export default function Index() {
               <CardHeader>
                 <PhoneCall className="w-10 h-10 text-red-400 mb-3" />
                 <CardTitle>Feeling Really Low?</CardTitle>
-                <CardDescription className="text-white/70">Reach out to a nearby professional for help.</CardDescription>
+                <CardDescription className="text-white/70">
+                  Reach out to a nearby professional for help.
+                </CardDescription>
               </CardHeader>
               <CardContent>
-                <a href="https://www.google.com/maps/search/mental+health+doctor+near+me" target="_blank" rel="noreferrer">
-                  <Button className="w-full bg-white text-black hover:bg-white/90">Find Nearby Doctors</Button>
+                <a
+                  href="https://www.google.com/maps/search/mental+health+doctor+near+me"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <Button className="w-full bg-white text-black hover:bg-white/90">
+                    Find Nearby Doctors
+                  </Button>
                 </a>
               </CardContent>
             </Card>
@@ -254,11 +381,15 @@ export default function Index() {
               <CardHeader>
                 <Gamepad2 className="w-10 h-10 text-indigo-400 mb-3" />
                 <CardTitle>Mini Games</CardTitle>
-                <CardDescription className="text-white/70">Short interactive games to relax and refocus.</CardDescription>
+                <CardDescription className="text-white/70">
+                  Short interactive games to relax and refocus.
+                </CardDescription>
               </CardHeader>
               <CardContent>
                 <Link to="/games">
-                  <Button className="w-full bg-white text-black hover:bg-white/90">Play Now</Button>
+                  <Button className="w-full bg-white text-black hover:bg-white/90">
+                    Play Now
+                  </Button>
                 </Link>
               </CardContent>
             </Card>
@@ -266,11 +397,15 @@ export default function Index() {
               <CardHeader>
                 <Activity className="w-10 h-10 text-emerald-400 mb-3" />
                 <CardTitle>Daily Mood Tracking</CardTitle>
-                <CardDescription className="text-white/70">Log your mood every day and watch your trends improve.</CardDescription>
+                <CardDescription className="text-white/70">
+                  Log your mood every day and watch your trends improve.
+                </CardDescription>
               </CardHeader>
               <CardContent>
                 <Link to="/dashboard">
-                  <Button className="w-full bg-white text-black hover:bg-white/90">View Your Progress</Button>
+                  <Button className="w-full bg-white text-black hover:bg-white/90">
+                    View Your Progress
+                  </Button>
                 </Link>
               </CardContent>
             </Card>
@@ -301,19 +436,29 @@ export default function Index() {
       {/* CTA Section */}
       <section className="py-20 text-center bg-black">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold mb-6">Ready to Track and Improve Your Mood?</h2>
+          <h2 className="text-4xl font-bold mb-6">
+            Ready to Track and Improve Your Mood?
+          </h2>
           <p className="text-xl text-white/80 mb-8 max-w-2xl mx-auto">
-            Join thousands of users who are building healthier habits with guided tracking and activities.
+            Join thousands of users who are building healthier habits with
+            guided tracking and activities.
           </p>
           <div className="flex gap-3 justify-center">
             <Link to="/assess">
-              <Button size="lg" className="bg-white text-black hover:bg-white/90 text-lg px-8 py-4">
+              <Button
+                size="lg"
+                className="bg-white text-black hover:bg-white/90 text-lg px-8 py-4"
+              >
                 <Brain className="w-5 h-5 mr-2" /> Start Your Journey
                 <ArrowRight className="w-5 h-5 ml-2" />
               </Button>
             </Link>
             <Link to="/signin">
-              <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 text-lg px-8 py-4">
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-white/30 text-white hover:bg-white/10 text-lg px-8 py-4"
+              >
                 Sign in
               </Button>
             </Link>
@@ -328,7 +473,9 @@ export default function Index() {
             <Brain className="h-6 w-6 text-white" />
             <span className="text-lg font-semibold text-white">Moody</span>
           </div>
-          <p>&copy; 2024 Moody. Boosting your mood through personalized content.</p>
+          <p>
+            &copy; 2024 Moody. Boosting your mood through personalized content.
+          </p>
         </div>
       </footer>
     </div>
