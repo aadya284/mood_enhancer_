@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -26,7 +27,18 @@ import {
   Activity,
 } from "lucide-react";
 
+interface QuoteResponse { quote: string; author: string }
+interface MentalItem { title: string; link: string; publishedAt: string; source: string }
+
 export default function Index() {
+  const [quote, setQuote] = useState<QuoteResponse | null>(null);
+  const [updates, setUpdates] = useState<MentalItem[]>([]);
+
+  useEffect(() => {
+    fetch("/api/quote").then(r=>r.json()).then(setQuote).catch(()=>{});
+    fetch("/api/mental-updates").then(r=>r.json()).then((d)=>setUpdates(d.items||[])).catch(()=>{});
+  }, []);
+
   return (
     <div className="min-h-screen bg-black text-white">
       {/* Navigation */}
@@ -89,6 +101,18 @@ export default function Index() {
         </div>
       </section>
 
+      {/* Daily Quote */}
+      <section className="py-8 bg-zinc-950">
+        <div className="container mx-auto px-4">
+          <Card className="bg-zinc-900 border border-white/10">
+            <CardContent className="p-6 text-center">
+              <div className="text-lg italic">{quote ? `“${quote.quote}”` : "Loading today’s quote..."}</div>
+              <div className="mt-2 text-white/70">{quote?.author || ""}</div>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
       {/* Features Section */}
       <section className="py-16 bg-zinc-950">
         <div className="container mx-auto px-4">
@@ -110,6 +134,42 @@ export default function Index() {
                 </CardHeader>
               </Card>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Global Mental Health Updates */}
+      <section className="py-16 bg-black">
+        <div className="container mx-auto px-4">
+          <div className="flex items-end justify-between mb-6">
+            <h2 className="text-4xl font-bold">Mental Health Updates Worldwide</h2>
+            <a
+              className="text-sm underline text-white/80 hover:text-white"
+              href="https://news.google.com/search?q=mental+health"
+              target="_blank"
+              rel="noreferrer"
+            >
+              See more
+            </a>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {updates.slice(0,9).map((n, i) => (
+              <Card key={i} className="bg-zinc-900 border border-white/10 h-full">
+                <CardHeader>
+                  <CardTitle className="text-white text-base leading-snug">
+                    <a href={n.link} target="_blank" rel="noreferrer" className="hover:underline">
+                      {n.title}
+                    </a>
+                  </CardTitle>
+                  <CardDescription className="text-white/60 text-xs">
+                    {n.source} • {new Date(n.publishedAt).toLocaleString()}
+                  </CardDescription>
+                </CardHeader>
+              </Card>
+            ))}
+            {updates.length === 0 && (
+              <div className="col-span-full text-white/70">No updates available right now.</div>
+            )}
           </div>
         </div>
       </section>
