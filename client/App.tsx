@@ -10,6 +10,7 @@ import Index from "./pages/Index";
 import Assessment from "./pages/Assessment";
 import Recommendations from "./pages/Recommendations";
 import Dashboard from "./pages/Dashboard";
+import Games from "./pages/Games";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
