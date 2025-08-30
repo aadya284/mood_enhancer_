@@ -4,11 +4,6 @@ import OpenAI from "openai";
 // Simple cache to avoid repeating images in the same session
 const usedImages = new Set<string>();
 
-// Initialize OpenAI client
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
-
 interface MoodAssessment {
   mood: string;
   day: string;
@@ -48,29 +43,41 @@ async function getUnsplashImage(query: string): Promise<string> {
       // Use diverse high-quality images from Pexels based on specific content
       const specificImages: Record<string, string> = {
         // Movies
-        'spider-man': 'https://images.pexels.com/photos/163077/mario-luigi-yoschi-figures-163077.jpeg?w=400&h=600&fit=crop',
-        'dune': 'https://images.pexels.com/photos/998641/pexels-photo-998641.jpeg?w=400&h=600&fit=crop',
-        'movie': 'https://images.pexels.com/photos/7991579/pexels-photo-7991579.jpeg?w=400&h=600&fit=crop',
+        "spider-man":
+          "https://images.pexels.com/photos/163077/mario-luigi-yoschi-figures-163077.jpeg?w=400&h=600&fit=crop",
+        dune: "https://images.pexels.com/photos/998641/pexels-photo-998641.jpeg?w=400&h=600&fit=crop",
+        movie:
+          "https://images.pexels.com/photos/7991579/pexels-photo-7991579.jpeg?w=400&h=600&fit=crop",
 
         // Music
-        'weeknd': 'https://images.pexels.com/photos/3693586/pexels-photo-3693586.jpeg?w=400&h=600&fit=crop',
-        'dua lipa': 'https://images.pexels.com/photos/3756242/pexels-photo-3756242.jpeg?w=400&h=600&fit=crop',
-        'music': 'https://images.pexels.com/photos/3764004/pexels-photo-3764004.jpeg?w=400&h=600&fit=crop',
+        weeknd:
+          "https://images.pexels.com/photos/3693586/pexels-photo-3693586.jpeg?w=400&h=600&fit=crop",
+        "dua lipa":
+          "https://images.pexels.com/photos/3756242/pexels-photo-3756242.jpeg?w=400&h=600&fit=crop",
+        music:
+          "https://images.pexels.com/photos/3764004/pexels-photo-3764004.jpeg?w=400&h=600&fit=crop",
 
         // Podcasts
-        'joe rogan': 'https://images.pexels.com/photos/7562313/pexels-photo-7562313.jpeg?w=400&h=600&fit=crop',
-        'conan': 'https://images.pexels.com/photos/6956912/pexels-photo-6956912.jpeg?w=400&h=600&fit=crop',
-        'podcast': 'https://images.pexels.com/photos/4226140/pexels-photo-4226140.jpeg?w=400&h=600&fit=crop',
+        "joe rogan":
+          "https://images.pexels.com/photos/7562313/pexels-photo-7562313.jpeg?w=400&h=600&fit=crop",
+        conan:
+          "https://images.pexels.com/photos/6956912/pexels-photo-6956912.jpeg?w=400&h=600&fit=crop",
+        podcast:
+          "https://images.pexels.com/photos/4226140/pexels-photo-4226140.jpeg?w=400&h=600&fit=crop",
 
         // Books
-        'atomic habits': 'https://images.pexels.com/photos/1029141/pexels-photo-1029141.jpeg?w=400&h=600&fit=crop',
-        'midnight library': 'https://images.pexels.com/photos/2908984/pexels-photo-2908984.jpeg?w=400&h=600&fit=crop',
-        'book': 'https://images.pexels.com/photos/159866/books-book-pages-read-literature-159866.jpeg?w=400&h=600&fit=crop',
+        "atomic habits":
+          "https://images.pexels.com/photos/1029141/pexels-photo-1029141.jpeg?w=400&h=600&fit=crop",
+        "midnight library":
+          "https://images.pexels.com/photos/2908984/pexels-photo-2908984.jpeg?w=400&h=600&fit=crop",
+        book: "https://images.pexels.com/photos/159866/books-book-pages-read-literature-159866.jpeg?w=400&h=600&fit=crop",
 
         // Games
-        'hades': 'https://images.pexels.com/photos/275033/pexels-photo-275033.jpeg?w=400&h=600&fit=crop',
-        'zelda': 'https://images.pexels.com/photos/442576/pexels-photo-442576.jpeg?w=400&h=600&fit=crop',
-        'game': 'https://images.pexels.com/photos/3165335/pexels-photo-3165335.jpeg?w=400&h=600&fit=crop'
+        hades:
+          "https://images.pexels.com/photos/275033/pexels-photo-275033.jpeg?w=400&h=600&fit=crop",
+        zelda:
+          "https://images.pexels.com/photos/442576/pexels-photo-442576.jpeg?w=400&h=600&fit=crop",
+        game: "https://images.pexels.com/photos/3165335/pexels-photo-3165335.jpeg?w=400&h=600&fit=crop",
       };
 
       // Try to find specific image based on query content
@@ -82,7 +89,7 @@ async function getUnsplashImage(query: string): Promise<string> {
       }
 
       // Fallback to category-based images
-      const categoryImages = ['movie', 'music', 'podcast', 'book', 'game'];
+      const categoryImages = ["movie", "music", "podcast", "book", "game"];
       for (const category of categoryImages) {
         if (lowerQuery.includes(category)) {
           return specificImages[category];
@@ -92,31 +99,31 @@ async function getUnsplashImage(query: string): Promise<string> {
       // Random fallback to avoid same image, ensuring uniqueness
       const randomImages = [
         // Movies
-        'https://images.pexels.com/photos/7991579/pexels-photo-7991579.jpeg?w=400&h=600&fit=crop',
-        'https://images.pexels.com/photos/33450578/pexels-photo-33450578.jpeg?w=400&h=600&fit=crop',
+        "https://images.pexels.com/photos/7991579/pexels-photo-7991579.jpeg?w=400&h=600&fit=crop",
+        "https://images.pexels.com/photos/33450578/pexels-photo-33450578.jpeg?w=400&h=600&fit=crop",
 
         // Music
-        'https://images.pexels.com/photos/3764004/pexels-photo-3764004.jpeg?w=400&h=600&fit=crop',
-        'https://images.pexels.com/photos/3693108/pexels-photo-3693108.jpeg?w=400&h=600&fit=crop',
-        'https://images.pexels.com/photos/3693586/pexels-photo-3693586.jpeg?w=400&h=600&fit=crop',
+        "https://images.pexels.com/photos/3764004/pexels-photo-3764004.jpeg?w=400&h=600&fit=crop",
+        "https://images.pexels.com/photos/3693108/pexels-photo-3693108.jpeg?w=400&h=600&fit=crop",
+        "https://images.pexels.com/photos/3693586/pexels-photo-3693586.jpeg?w=400&h=600&fit=crop",
 
         // Podcasts
-        'https://images.pexels.com/photos/6956912/pexels-photo-6956912.jpeg?w=400&h=600&fit=crop',
-        'https://images.pexels.com/photos/33456955/pexels-photo-33456955.jpeg?w=400&h=600&fit=crop',
+        "https://images.pexels.com/photos/6956912/pexels-photo-6956912.jpeg?w=400&h=600&fit=crop",
+        "https://images.pexels.com/photos/33456955/pexels-photo-33456955.jpeg?w=400&h=600&fit=crop",
 
         // Books
-        'https://images.pexels.com/photos/1029141/pexels-photo-1029141.jpeg?w=400&h=600&fit=crop',
-        'https://images.pexels.com/photos/2908984/pexels-photo-2908984.jpeg?w=400&h=600&fit=crop',
-        'https://images.pexels.com/photos/33451743/pexels-photo-33451743.jpeg?w=400&h=600&fit=crop',
+        "https://images.pexels.com/photos/1029141/pexels-photo-1029141.jpeg?w=400&h=600&fit=crop",
+        "https://images.pexels.com/photos/2908984/pexels-photo-2908984.jpeg?w=400&h=600&fit=crop",
+        "https://images.pexels.com/photos/33451743/pexels-photo-33451743.jpeg?w=400&h=600&fit=crop",
 
         // Games
-        'https://images.pexels.com/photos/275033/pexels-photo-275033.jpeg?w=400&h=600&fit=crop',
-        'https://images.pexels.com/photos/442576/pexels-photo-442576.jpeg?w=400&h=600&fit=crop',
-        'https://images.pexels.com/photos/9833533/pexels-photo-9833533.jpeg?w=400&h=600&fit=crop',
+        "https://images.pexels.com/photos/275033/pexels-photo-275033.jpeg?w=400&h=600&fit=crop",
+        "https://images.pexels.com/photos/442576/pexels-photo-442576.jpeg?w=400&h=600&fit=crop",
+        "https://images.pexels.com/photos/9833533/pexels-photo-9833533.jpeg?w=400&h=600&fit=crop",
 
         // Additional variety
-        'https://images.pexels.com/photos/163077/mario-luigi-yoschi-figures-163077.jpeg?w=400&h=600&fit=crop',
-        'https://images.pexels.com/photos/998641/pexels-photo-998641.jpeg?w=400&h=600&fit=crop'
+        "https://images.pexels.com/photos/163077/mario-luigi-yoschi-figures-163077.jpeg?w=400&h=600&fit=crop",
+        "https://images.pexels.com/photos/998641/pexels-photo-998641.jpeg?w=400&h=600&fit=crop",
       ];
 
       // Try to find an unused image
@@ -129,17 +136,18 @@ async function getUnsplashImage(query: string): Promise<string> {
 
       // If all images used, clear cache and start over
       usedImages.clear();
-      const randomImg = randomImages[Math.floor(Math.random() * randomImages.length)];
+      const randomImg =
+        randomImages[Math.floor(Math.random() * randomImages.length)];
       usedImages.add(randomImg);
       return randomImg;
     }
 
     const response = await fetch(
-      `https://api.unsplash.com/search/photos?query=${encodeURIComponent(query)}&per_page=1&orientation=portrait&client_id=${process.env.UNSPLASH_ACCESS_KEY}`
+      `https://api.unsplash.com/search/photos?query=${encodeURIComponent(query)}&per_page=1&orientation=portrait&client_id=${process.env.UNSPLASH_ACCESS_KEY}`,
     );
 
     if (!response.ok) {
-      throw new Error('Failed to fetch from Unsplash');
+      throw new Error("Failed to fetch from Unsplash");
     }
 
     const data = await response.json();
@@ -151,25 +159,31 @@ async function getUnsplashImage(query: string): Promise<string> {
     }
 
     // Fallback to high-quality Pexels images
-    const fallbackUrl = 'https://images.pexels.com/photos/7991579/pexels-photo-7991579.jpeg?w=400&h=600&fit=crop';
+    const fallbackUrl =
+      "https://images.pexels.com/photos/7991579/pexels-photo-7991579.jpeg?w=400&h=600&fit=crop";
     usedImages.add(fallbackUrl);
     return fallbackUrl;
   } catch (error) {
-    console.error('Error fetching Unsplash image:', error);
+    console.error("Error fetching Unsplash image:", error);
     // Return high-quality fallback instead of placeholder.svg
-    const fallbackUrl = 'https://images.pexels.com/photos/7991579/pexels-photo-7991579.jpeg?w=400&h=600&fit=crop';
+    const fallbackUrl =
+      "https://images.pexels.com/photos/7991579/pexels-photo-7991579.jpeg?w=400&h=600&fit=crop";
     usedImages.add(fallbackUrl);
     return fallbackUrl;
   }
 }
 
 // Function to get AI recommendations
-async function getAIRecommendations(assessment: MoodAssessment): Promise<RecommendationResponse> {
+async function getAIRecommendations(
+  assessment: MoodAssessment,
+): Promise<RecommendationResponse> {
   // Add randomness to get different recommendations each time
   const randomSeed = Math.floor(Math.random() * 1000);
 
   const prompt = `
-Based on this person's mood assessment, provide 2 DIVERSE and DIFFERENT personalized recommendations for each category. Use variety and avoid repeating the same popular titles.
+You are a mood-based content curator. Return high-quality, diverse picks.
+Provide 2 varied recommendations per category that fit the user's mood and energy.
+Include a thoughtful reason for each.
 
 Mood Assessment:
 - Current mood: ${assessment.mood}
@@ -180,105 +194,74 @@ Mood Assessment:
 - Desired activity: ${assessment.activity}
 - Random seed: ${randomSeed}
 
-IMPORTANT:
-- Provide DIFFERENT recommendations each time, not the same popular ones
-- Include both mainstream AND lesser-known quality content
-- For images, provide SPECIFIC search terms that will find actual movie posters, album covers, etc.
+QUALITY RULES:
+- Mix mainstream hits with lesser-known gems; avoid repeating the same famous titles.
+- Prefer recent releases when relevant, but include timeless picks.
+- Balance genres and lengths; offer approachable options.
+- Be factual; only include real content that exists.
+- For images, give SPECIFIC search terms to find posters/covers.
 
-Please provide recommendations in this exact JSON format:
+Return ONLY valid JSON in this exact shape:
 {
-  "movies": [
-    {
-      "title": "Movie Title",
-      "description": "Brief description",
-      "genre": "Genre",
-      "duration": "1h 30m",
-      "rating": 4.5,
-      "reason": "Why this matches their mood",
-      "searchQuery": "Movie Title 2023 movie poster"
-    }
-  ],
-  "music": [
-    {
-      "title": "Song/Album/Playlist Title",
-      "description": "Brief description",
-      "genre": "Genre",
-      "duration": "3:45",
-      "rating": 4.8,
-      "reason": "Why this matches their mood",
-      "searchQuery": "Artist Name Album Title album cover"
-    }
-  ],
-  "podcasts": [
-    {
-      "title": "Podcast Title",
-      "description": "Brief description",
-      "genre": "Category",
-      "duration": "45m",
-      "rating": 4.7,
-      "reason": "Why this matches their mood",
-      "searchQuery": "Podcast Title podcast logo cover"
-    }
-  ],
-  "audiobooks": [
-    {
-      "title": "Book Title",
-      "description": "Brief description",
-      "genre": "Genre",
-      "duration": "8h 30m",
-      "rating": 4.6,
-      "reason": "Why this matches their mood",
-      "searchQuery": "Book Title Author book cover"
-    }
-  ],
-  "games": [
-    {
-      "title": "Game Title",
-      "description": "Brief description",
-      "genre": "Genre",
-      "rating": 4.9,
-      "reason": "Why this matches their mood",
-      "searchQuery": "Game Title video game poster cover art"
-    }
-  ]
+  "movies": [{"title":"","description":"","genre":"","duration":"","rating":4.7,"reason":"","searchQuery":""}],
+  "music": [{"title":"","description":"","genre":"","duration":"","rating":4.7,"reason":"","searchQuery":""}],
+  "podcasts": [{"title":"","description":"","genre":"","duration":"","rating":4.7,"reason":"","searchQuery":""}],
+  "audiobooks": [{"title":"","description":"","genre":"","duration":"","rating":4.7,"reason":"","searchQuery":""}],
+  "games": [{"title":"","description":"","genre":"","rating":4.7,"reason":"","searchQuery":""}]
 }
-
-Make sure all recommendations are real, popular content that exists. Focus on content that would genuinely help improve or complement their current emotional state.
 `;
 
   try {
-    const completion = await openai.chat.completions.create({
-      model: "gpt-3.5-turbo",
-      messages: [
-        {
-          role: "system",
-          content: "You are a mood-based content recommendation expert. Always respond with valid JSON only, no additional text."
-        },
-        {
-          role: "user",
-          content: prompt
-        }
-      ],
-      temperature: 0.7,
-      max_tokens: 2000,
-    });
+    if (!process.env.OPENAI_API_KEY) {
+      throw new Error("Missing OPENAI_API_KEY");
+    }
+    const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+    const messages = [
+      {
+        role: "system",
+        content:
+          "You are a mood-based content recommendation expert. Always respond with valid JSON only, no additional text.",
+      },
+      { role: "user", content: prompt },
+    ] as const;
 
-    const content = completion.choices[0]?.message?.content;
+    const models = ["gpt-4o-mini", "gpt-4o", "gpt-3.5-turbo"] as const;
+    let content: string | undefined;
+    for (const m of models) {
+      try {
+        const completion = await openai.chat.completions.create({
+          model: m,
+          messages,
+          temperature: 0.7,
+          max_tokens: 2000,
+        });
+        content = completion.choices[0]?.message?.content;
+        if (content) break;
+      } catch (_) {
+        // try next model
+      }
+    }
     if (!content) {
-      throw new Error('No content received from OpenAI');
+      throw new Error("No content received from OpenAI");
     }
 
     // Parse the AI response
     const aiRecommendations = JSON.parse(content);
-    
+
     // Process each category and add images + IDs
     const processedCategories: any = {};
-    
+
     for (const [category, items] of Object.entries(aiRecommendations)) {
       processedCategories[category] = await Promise.all(
         (items as any[]).map(async (item, index) => {
-          const imageUrl = await getUnsplashImage(item.searchQuery || item.title);
-          
+          const imageUrl = await getUnsplashImage(
+            item.searchQuery || item.title,
+          );
+
+          const query = encodeURIComponent(
+            `${item.title} ${item.genre || ""}`.trim(),
+          );
+          const externalUrl = `https://www.google.com/search?q=${query}`;
           return {
             id: `${category}_${index + 1}`,
             title: item.title,
@@ -288,20 +271,19 @@ Make sure all recommendations are real, popular content that exists. Focus on co
             rating: item.rating,
             reason: item.reason,
             imageUrl,
-            externalUrl: "#" // You can add real URLs later
+            externalUrl,
           };
-        })
+        }),
       );
     }
 
     return {
       mood: assessment.mood,
-      categories: processedCategories
+      categories: processedCategories,
     };
-
   } catch (error) {
-    console.error('Error getting AI recommendations:', error);
-    
+    console.error("Error getting AI recommendations:", error);
+
     // Fallback to diverse responses if AI fails
     const fallbackMovies = [
       {
@@ -312,8 +294,10 @@ Make sure all recommendations are real, popular content that exists. Focus on co
         duration: "1h 57m",
         rating: 4.8,
         reason: "Visually stunning and uplifting",
-        imageUrl: await getUnsplashImage("spider-man into spider-verse animated"),
-        externalUrl: "#"
+        imageUrl: await getUnsplashImage(
+          "spider-man into spider-verse animated",
+        ),
+        externalUrl: "#",
       },
       {
         id: "fallback_2",
@@ -324,8 +308,8 @@ Make sure all recommendations are real, popular content that exists. Focus on co
         rating: 4.7,
         reason: "Immersive and visually breathtaking",
         imageUrl: await getUnsplashImage("dune desert sci-fi"),
-        externalUrl: "#"
-      }
+        externalUrl: "#",
+      },
     ];
 
     return {
@@ -342,7 +326,7 @@ Make sure all recommendations are real, popular content that exists. Focus on co
             rating: 4.9,
             reason: "Energetic and mood-lifting",
             imageUrl: await getUnsplashImage("weeknd blinding lights neon"),
-            externalUrl: "#"
+            externalUrl: "#",
           },
           {
             id: "fallback_4",
@@ -353,8 +337,8 @@ Make sure all recommendations are real, popular content that exists. Focus on co
             rating: 4.8,
             reason: "Infectious energy and positivity",
             imageUrl: await getUnsplashImage("dua lipa disco colorful"),
-            externalUrl: "#"
-          }
+            externalUrl: "#",
+          },
         ],
         podcasts: [
           {
@@ -366,7 +350,7 @@ Make sure all recommendations are real, popular content that exists. Focus on co
             rating: 4.8,
             reason: "Engaging discussions to shift your focus",
             imageUrl: await getUnsplashImage("joe rogan microphone studio"),
-            externalUrl: "#"
+            externalUrl: "#",
           },
           {
             id: "fallback_6",
@@ -377,8 +361,8 @@ Make sure all recommendations are real, popular content that exists. Focus on co
             rating: 4.7,
             reason: "Lighthearted humor to boost mood",
             imageUrl: await getUnsplashImage("conan comedy podcast"),
-            externalUrl: "#"
-          }
+            externalUrl: "#",
+          },
         ],
         audiobooks: [
           {
@@ -390,7 +374,7 @@ Make sure all recommendations are real, popular content that exists. Focus on co
             rating: 4.8,
             reason: "Practical strategies for positive change",
             imageUrl: await getUnsplashImage("atomic habits self improvement"),
-            externalUrl: "#"
+            externalUrl: "#",
           },
           {
             id: "fallback_8",
@@ -401,8 +385,8 @@ Make sure all recommendations are real, popular content that exists. Focus on co
             rating: 4.6,
             reason: "Thought-provoking and uplifting story",
             imageUrl: await getUnsplashImage("midnight library books"),
-            externalUrl: "#"
-          }
+            externalUrl: "#",
+          },
         ],
         games: [
           {
@@ -413,7 +397,7 @@ Make sure all recommendations are real, popular content that exists. Focus on co
             rating: 4.9,
             reason: "Engaging gameplay and positive progression",
             imageUrl: await getUnsplashImage("hades mythology gaming"),
-            externalUrl: "#"
+            externalUrl: "#",
           },
           {
             id: "fallback_10",
@@ -423,45 +407,44 @@ Make sure all recommendations are real, popular content that exists. Focus on co
             rating: 4.8,
             reason: "Immersive exploration and discovery",
             imageUrl: await getUnsplashImage("zelda adventure fantasy"),
-            externalUrl: "#"
-          }
-        ]
-      }
+            externalUrl: "#",
+          },
+        ],
+      },
     };
   }
 }
 
 export const handleRecommendations: RequestHandler = async (req, res) => {
   try {
-    // Validate API keys
+    // Validate API keys (non-fatal in dev; fall back when missing)
     if (!process.env.OPENAI_API_KEY) {
-      return res.status(500).json({ 
-        error: 'OpenAI API key not configured. Please set OPENAI_API_KEY in your environment variables.' 
-      });
+      console.warn(
+        "OpenAI API key not configured. Using fallback recommendations.",
+      );
     }
 
     if (!process.env.UNSPLASH_ACCESS_KEY) {
-      console.warn('Unsplash API key not found. Using placeholder images.');
+      console.warn("Unsplash API key not found. Using placeholder images.");
     }
 
     const assessment: MoodAssessment = req.body;
-    
+
     // Validate request body
     if (!assessment || !assessment.mood) {
-      return res.status(400).json({ 
-        error: 'Invalid request. Mood assessment data is required.' 
+      return res.status(400).json({
+        error: "Invalid request. Mood assessment data is required.",
       });
     }
 
     // Get AI-powered recommendations
     const recommendations = await getAIRecommendations(assessment);
-    
+
     res.json(recommendations);
-    
   } catch (error) {
-    console.error('Error in recommendations endpoint:', error);
-    res.status(500).json({ 
-      error: 'Failed to generate recommendations. Please try again.' 
+    console.error("Error in recommendations endpoint:", error);
+    res.status(500).json({
+      error: "Failed to generate recommendations. Please try again.",
     });
   }
 };
