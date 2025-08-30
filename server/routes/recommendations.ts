@@ -4,10 +4,6 @@ import OpenAI from "openai";
 // Simple cache to avoid repeating images in the same session
 const usedImages = new Set<string>();
 
-// Initialize OpenAI client
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
 
 interface MoodAssessment {
   mood: string;
@@ -247,6 +243,10 @@ Make sure all recommendations are real, popular content that exists. Focus on co
 `;
 
   try {
+    if (!process.env.OPENAI_API_KEY) {
+      throw new Error('Missing OPENAI_API_KEY');
+    }
+    const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
     const completion = await openai.chat.completions.create({
       model: "gpt-3.5-turbo",
       messages: [
@@ -433,11 +433,9 @@ Make sure all recommendations are real, popular content that exists. Focus on co
 
 export const handleRecommendations: RequestHandler = async (req, res) => {
   try {
-    // Validate API keys
+    // Validate API keys (non-fatal in dev; fall back when missing)
     if (!process.env.OPENAI_API_KEY) {
-      return res.status(500).json({ 
-        error: 'OpenAI API key not configured. Please set OPENAI_API_KEY in your environment variables.' 
-      });
+      console.warn('OpenAI API key not configured. Using fallback recommendations.');
     }
 
     if (!process.env.UNSPLASH_ACCESS_KEY) {
